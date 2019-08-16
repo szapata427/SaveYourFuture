@@ -50,6 +50,9 @@ class App extends Component {
           console.log('user not saved in database, need to save')
           this.saveUserToDatabase(user)
         }
+        else {
+          console.log("user is signed in")
+        }
       })
     })
 
@@ -84,10 +87,10 @@ class App extends Component {
     console.log(this.state.isSignedIn)
     return (
       <div className="App">
-        <LogInHomePage />
         {this.state.isSignedIn ? (
           <span>
             <div>Signed In!</div>
+            <LogInHomePage signedIn={this.state.isSignedIn}/>
             <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
             <img
@@ -96,10 +99,12 @@ class App extends Component {
             />
           </span>
         ) : (
-          <StyledFirebaseAuth
-            uiConfig={this.uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
+          <React.Fragment>
+            <StyledFirebaseAuth
+              uiConfig={this.uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          </React.Fragment>
         )}
       </div>
     )
