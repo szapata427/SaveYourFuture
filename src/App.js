@@ -81,7 +81,6 @@ class App extends Component {
           <span>
             <LogInHomePage signedIn={this.state.isSignedIn} />
             <div>Signed In!</div>
-            <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
             <img
               alt="profile picture"
@@ -93,6 +92,9 @@ class App extends Component {
             <div className="login-homepage-options-main-container">
               <div className="homepage-div-title-main-container">
                 Welcome To Save Your Future
+              </div>
+              <div className="home-login-title-parent-container">
+              <div className="home-login-title">Please Log-In or Sign Up</div>
               </div>
               <StyledFirebaseAuth
                 uiConfig={this.uiConfig}

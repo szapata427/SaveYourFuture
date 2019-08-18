@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 class LogInHomePage extends Component {
   render() {
@@ -20,6 +22,9 @@ class LogInHomePage extends Component {
             </li>
             <li>
               <a href="#about">About</a>
+            </li>
+            <li>
+            <a id="profile-signout-button" onClick={() => firebase.auth().signOut()}>Sign out!</a>
             </li>
           </ul>
           <div className="loginhomepage-info-div" />
