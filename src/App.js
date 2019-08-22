@@ -12,7 +12,7 @@ firebase.initializeApp({
 class App extends Component {
   state = {
     isSignedIn: false,
-    userDatabase: null
+    userDatabaseId: null
   };
   uiConfig = {
     signInFlow: "popup",
@@ -29,6 +29,7 @@ class App extends Component {
   };
 
   componentDidMount = () => {
+    // monitor changes for the user
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user });
       console.log("user", user);
@@ -36,20 +37,37 @@ class App extends Component {
       let userEmail = user.email;
       let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
       console.log(emailsearchurl);
+
       fetch(emailsearchurl)
         .then(response => response.json())
         .then(data => {
+
           if (data.result == null) {
+            console.log(data)
             console.log("user not saved in database, need to save");
-            this.saveUserToDatabase(user);
-          } else {
+            this.saveUserToDatabase(user, (result) => {
+              console.log(result)
+            });
+          } 
+          else {
             console.log("user is signed in");
+            this.grabUserDateBaseId(user, result => {
+              console.log(result)
+            })
           }
-        });
+        }).catch(error => {
+          console.log(error)
+        })
     });
   };
 
-  saveUserToDatabase = userInfo => {
+
+  grabUserDateBaseId = (userInfo) => {
+    fetch('')
+  }
+
+  saveUserToDatabase = (userInfo, callback) => {
+
     let namearray = userInfo.displayName.split(" ");
     let arraylength = namearray.length;
     let firstname = namearray[0];
@@ -61,6 +79,7 @@ class App extends Component {
       LastName: lastname,
       Email: email
     };
+
     fetch(`http://localhost:5000/saveyourfuture/api/v1.0/NewUser`, {
       method: "POST",
       headers: {
@@ -70,7 +89,7 @@ class App extends Component {
       body: JSON.stringify(newUserData)
     })
       .then(response => response.json())
-      .then(resp => console.log(resp));
+      .then(resp => callback(resp));
   };
 
   render() {

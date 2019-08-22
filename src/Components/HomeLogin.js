@@ -24,7 +24,7 @@ class LogInHomePage extends Component {
               <a href="#about">About</a>
             </li>
             <li>
-            <a id="profile-signout-button" onClick={() => firebase.auth().signOut()}>Sign out!</a>
+            <a id="profile-signout-button" onClick={() => firebase.auth().signOut()}>Log out</a>
             </li>
           </ul>
           <div className="loginhomepage-info-div" />
