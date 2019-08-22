@@ -126,3 +126,29 @@ li a:hover:not(.active) {
 #profile-signout-button{
   cursor: pointer;
 }
+
+/* loading page waiting for firebase auth */
+
+#loading-sign-home-page-wrapper {
+  display: inline-block;
+  margin-top: 4em;
+}
+
+.loader {
+  border: 4em solid #f3f3f3; /* Light grey */
+  border-top: 4em solid lightblue;
+  animation: spin 3s linear infinite;
+  border-radius: 50%;
+  width: 20em;
+  height: 20em;
+
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}

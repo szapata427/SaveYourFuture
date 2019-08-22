@@ -120,7 +120,10 @@ class App extends Component {
       <div className="App">
 
         {this.state.loadingFireBaseInfo ?
-        <div>Spinning wheel</div> : 
+        <div id="loading-sign-home-page-wrapper">
+          <div className="loader">Loading</div> 
+        </div>
+        : 
         
         this.state.isSignedIn ? (
           <span>
