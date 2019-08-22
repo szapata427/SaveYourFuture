@@ -4,6 +4,8 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import LogInHomePage from "./Components/HomeLogin";
 import actionCreator from './Store/Actions/UserAction'
+import { connect } from 'react-redux'
+import { currentUser } from '../src/Store/Actions/UserAction'
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -63,6 +65,7 @@ class App extends Component {
             this.saveUserToDatabase(user, result => {
               console.log(result);
               if (result.Id) {
+                this.props.currentUser(result)
                 userid = result.Id;
                 this.setState({
                   userDatabaseId: userid
@@ -73,6 +76,7 @@ class App extends Component {
             });
           } else {
             console.log("user is signed in and in database");
+            this.props.currentUser(data.result)
             userid = data.result.Id;
             console.log(userid);
             this.setState({
@@ -156,4 +160,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  console.log('hit the distpach in app.js')
+  return {
+    currentUser: (theuser) => { dispatch({type: "CURRENT_USER", value: theuser})}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
