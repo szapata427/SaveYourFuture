@@ -3,6 +3,7 @@ import "./App.css";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import LogInHomePage from "./Components/HomeLogin";
+import actionCreator from './Store/Actions/UserAction'
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
