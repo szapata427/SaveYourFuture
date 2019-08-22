@@ -12,7 +12,8 @@ firebase.initializeApp({
 class App extends Component {
   state = {
     isSignedIn: false,
-    userDatabaseId: null
+    userDatabaseId: null,
+    loadingFireBaseInfo: true
   };
   uiConfig = {
     signInFlow: "popup",
@@ -32,9 +33,14 @@ class App extends Component {
     // monitor changes for the user
     let userid = null;
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user });
+      this.setState({ 
+        isSignedIn: !!user,
+        loadingFireBaseInfo: false 
+      });
       console.log("user", user);
+      if (this.state.isSignedIn == true) {
 
+      
       let userEmail = user.email;
       let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
       console.log(emailsearchurl);
@@ -43,7 +49,12 @@ class App extends Component {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          if (data.result == null) {
+
+          if (data.result.Error) {
+
+            console.log("error in searching email user on server side")
+          }
+          else if (data.result == null) {
             console.log(data);
             console.log(
               "user is signed in but user not saved in database, need to save"
@@ -71,6 +82,8 @@ class App extends Component {
         .catch(error => {
           console.log(error);
         });
+
+      }
     });
   };
 
@@ -99,19 +112,21 @@ class App extends Component {
       .then(resp => callback(resp));
   };
 
+
+  
   render() {
     console.log(this.state);
     return (
       <div className="App">
-        {this.state.isSignedIn ? (
+
+        {this.state.loadingFireBaseInfo ?
+        <div>Spinning wheel</div> : 
+        
+        this.state.isSignedIn ? (
           <span>
             <LogInHomePage signedIn={this.state.isSignedIn} />
             <div>Signed In!</div>
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-            <img
-              alt="profile picture"
-              src={firebase.auth().currentUser.photoURL}
-            />
           </span>
         ) : (
           <React.Fragment>
@@ -129,6 +144,9 @@ class App extends Component {
             </div>
           </React.Fragment>
         )}
+
+
+
       </div>
     );
   }

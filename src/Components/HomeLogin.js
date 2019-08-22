@@ -15,13 +15,13 @@ class LogInHomePage extends Component {
               </a>
             </li>
             <li>
-              <a href="#news">News</a>
+              <a href="#news">Savings</a>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <a href="#contact">Goals</a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#about">Personal Information</a>
             </li>
             <li>
             <a id="profile-signout-button" onClick={() => firebase.auth().signOut()}>Log out</a>
