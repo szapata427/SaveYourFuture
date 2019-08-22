@@ -30,6 +30,7 @@ class App extends Component {
 
   componentDidMount = () => {
     // monitor changes for the user
+    let userid = null;
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user });
       console.log("user", user);
@@ -41,33 +42,39 @@ class App extends Component {
       fetch(emailsearchurl)
         .then(response => response.json())
         .then(data => {
-
+          console.log(data);
           if (data.result == null) {
-            console.log(data)
-            console.log("user not saved in database, need to save");
-            this.saveUserToDatabase(user, (result) => {
-              console.log(result)
+            console.log(data);
+            console.log(
+              "user is signed in but user not saved in database, need to save"
+            );
+            this.saveUserToDatabase(user, result => {
+              console.log(result);
+              if (result.Id) {
+                userid = result.Id;
+                this.setState({
+                  userDatabaseId: userid
+                });
+              } else {
+                console.log(result);
+              }
             });
-          } 
-          else {
-            console.log("user is signed in");
-            this.grabUserDateBaseId(user, result => {
-              console.log(result)
-            })
+          } else {
+            console.log("user is signed in and in database");
+            userid = data.result.Id;
+            console.log(userid);
+            this.setState({
+              userDatabaseId: userid
+            });
           }
-        }).catch(error => {
-          console.log(error)
         })
+        .catch(error => {
+          console.log(error);
+        });
     });
   };
 
-
-  grabUserDateBaseId = (userInfo) => {
-    fetch('')
-  }
-
   saveUserToDatabase = (userInfo, callback) => {
-
     let namearray = userInfo.displayName.split(" ");
     let arraylength = namearray.length;
     let firstname = namearray[0];
@@ -93,7 +100,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.isSignedIn);
+    console.log(this.state);
     return (
       <div className="App">
         {this.state.isSignedIn ? (
@@ -113,7 +120,7 @@ class App extends Component {
                 Welcome To Save Your Future
               </div>
               <div className="home-login-title-parent-container">
-              <div className="home-login-title">Please Log-In or Sign Up</div>
+                <div className="home-login-title">Please Log-In or Sign Up</div>
               </div>
               <StyledFirebaseAuth
                 uiConfig={this.uiConfig}
