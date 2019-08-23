@@ -4,8 +4,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { connect } from "react-redux";
 import { deleteUser } from "../Store/Actions/UserAction";
 import HomePageAccountMaster from "./HomePageAccountMasterComponent";
-import {NavLink} from 'react-router-dom'
-
+import { NavLink } from "react-router-dom";
 
 class LoginHomePageRoutes extends Component {
   userLoggedOut = () => {
@@ -20,39 +19,19 @@ class LoginHomePageRoutes extends Component {
         <div>
           <ul className="navbar-ul-container-main">
             <li>
-              <a className="active" >
-                <NavLink to="/AccountHome">
-                Home
-                </NavLink>
-              </a>
+              <NavLink to="/AccountHome">Home</NavLink>
             </li>
             <li>
-              <a>
-              <NavLink to="/Savings">
-                Savings
-                </NavLink>
-                </a>
+              <NavLink to="/Savings">Savings</NavLink>
             </li>
             <li>
-              <a>
-                <NavLink to="/Goals">
-                  Goals
-                </NavLink>
-              </a>
+              <NavLink to="/Goals">Goals</NavLink>
             </li>
             <li>
-              <a>
-                <NavLink to="/PersonInformation">
-                Personal Information
-                </NavLink>
-              </a>
+              <NavLink to="/PersonInformation">Personal Information</NavLink>
             </li>
             <li>
-              <a>
-                <NavLink to="/Transactions">
-                  Transactions
-                </NavLink>
-              </a>
+              <NavLink to="/Transactions">Transactions</NavLink>
             </li>
             <li>
               <a
