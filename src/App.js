@@ -6,9 +6,10 @@ import LoginHomePageRoutes from "./Components/HomeLoginRoutes";
 import actionCreator from "./Store/Actions/UserAction";
 import { connect } from "react-redux";
 import { currentUser } from "../src/Store/Actions/UserAction";
-import { ReactRouter, Switch, Route } from "react-router-dom";
+import { ReactRouter, Switch, Route, withRouter } from "react-router-dom";
 import HomePageAccountMaster from "./Components/HomePageAccountMasterComponent";
 import SavingsHomePageMaster from "./Components/SavingsHomePageMaster";
+import TransactionMasterComponent from "./Components/TransactionsMasterComponent";
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -126,15 +127,27 @@ class App extends Component {
         ) : this.state.isSignedIn ? (
           <span>
             <LoginHomePageRoutes signedIn={this.state.isSignedIn} />
-            <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+            <h1>{firebase.auth().currentUser.displayName}</h1>
             <Switch>
               <Route
                 path="/AccountHome"
                 render={() => <HomePageAccountMaster user={this.state.user} />}
               />
               <Route
+                path="/Goals"
+                render={() => <SavingsHomePageMaster user={this.state.user} />}
+              />
+              <Route
                 path="/Savings"
                 render={() => <SavingsHomePageMaster user={this.state.user} />}
+              />
+              <Route
+                path="/PersonInformation"
+                render={() => <SavingsHomePageMaster user={this.state.user} />}
+              />
+              <Route
+                path="/Transactions"
+                render={() => <TransactionMasterComponent />}
               />
             </Switch>
           </span>
@@ -168,7 +181,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps
-)(App);
+)(App));

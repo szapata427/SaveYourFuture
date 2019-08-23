@@ -76,11 +76,12 @@ ul.navbar-ul-container-main {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 15%;
-  background-color:rgb(157, 228, 252);
+  width: 18%;
+  background-color:rgb(100, 158, 235);
   position: fixed;
   height: 100%;
   overflow: auto;
+  font-size: 1.3em;
   
 }
 
@@ -92,12 +93,13 @@ li a {
 }
 
 li a.active {
-  background-color: rgb(236, 112, 118);
-  color: rgb(255, 254, 253);
+  background-color: rgb(86, 245, 165);
+  color: rgb(252, 252, 252);
+  font-weight: 700;
 }
 
 li a:hover:not(.active) {
-  background-color: rgb(62, 90, 216);
+  background-color: rgb(181, 192, 235);
   color: white;
 }
 

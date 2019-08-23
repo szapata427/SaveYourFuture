@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 
 class HomePageAccountMaster extends Component {
-
+    
 
     render() {
         return (
