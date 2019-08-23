@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import LogInHomePage from "./Components/HomeLogin";
+import LoginHomePageRoutes from "./Components/HomeLoginRoutes";
 import actionCreator from './Store/Actions/UserAction'
 import { connect } from 'react-redux'
 import { currentUser } from '../src/Store/Actions/UserAction'
+import { ReactRouter, Switch, Route} from 'react-router-dom'
+import HomePageAccountMaster from './Components/HomePageAccountMasterComponent'
+
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -132,9 +135,14 @@ class App extends Component {
         
         this.state.isSignedIn ? (
           <span>
-            <LogInHomePage signedIn={this.state.isSignedIn} />
-            <div>Signed In!</div>
+            <LoginHomePageRoutes signedIn={this.state.isSignedIn} />
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+            <Switch>
+            <Route
+            path="/AccountHome"
+            render={() => <HomePageAccountMaster user={this.state.user} />}
+          />
+            </Switch>
           </span>
         ) : (
           <React.Fragment>

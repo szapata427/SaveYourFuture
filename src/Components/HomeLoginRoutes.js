@@ -3,11 +3,12 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import {connect} from 'react-redux';
 import {deleteUser} from '../Store/Actions/UserAction'
+import HomePageAccountMaster from './HomePageAccountMasterComponent'
 
 
 
 
-class LogInHomePage extends Component {
+class LoginHomePageRoutes extends Component {
 
   userLoggedOut = () => {
     firebase.auth().signOut()
@@ -21,7 +22,7 @@ class LogInHomePage extends Component {
         <div>
           <ul className="navbar-ul-container-main">
             <li>
-              <a className="active" href="#home">
+              <a className="active" href="#AccountHome">
                 Home
               </a>
             </li>
@@ -38,7 +39,7 @@ class LogInHomePage extends Component {
             <a id="profile-signout-button" onClick={() => this.userLoggedOut()}>Log out</a>
             </li>
           </ul>
-          <div className="loginhomepage-info-div" />
+          <div className="LoginHomePageRoutes-info-div" />
         </div>
       </React.Fragment>
     );
@@ -61,4 +62,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default (connect(mapStateToProps, mapDispatchToProps))(LogInHomePage);
+export default (connect(mapStateToProps, mapDispatchToProps))(LoginHomePageRoutes);
+
+
+// <Route path="/AccountHome" component={HomePageAccountMaster}/>
