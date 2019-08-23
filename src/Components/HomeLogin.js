@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import {connect} from 'react-redux';
+import {deleteUser} from '../Store/Actions/UserAction'
+
+
+
 
 class LogInHomePage extends Component {
+
+  userLoggedOut = () => {
+    firebase.auth().signOut()
+    this.props.deleteUser()
+  }
+
   render() {
     console.log(this.props.signedIn);
     return (
@@ -24,7 +35,7 @@ class LogInHomePage extends Component {
               <a href="#about">Personal Information</a>
             </li>
             <li>
-            <a id="profile-signout-button" onClick={() => firebase.auth().signOut()}>Log out</a>
+            <a id="profile-signout-button" onClick={() => this.userLoggedOut()}>Log out</a>
             </li>
           </ul>
           <div className="loginhomepage-info-div" />
@@ -34,4 +45,20 @@ class LogInHomePage extends Component {
   }
 }
 
-export default LogInHomePage;
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    user: state.user
+ 
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteUser: () => dispatch(deleteUser()) 
+  }
+}
+
+
+export default (connect(mapStateToProps, mapDispatchToProps))(LogInHomePage);
