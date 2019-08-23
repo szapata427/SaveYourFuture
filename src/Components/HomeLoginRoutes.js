@@ -34,10 +34,25 @@ class LoginHomePageRoutes extends Component {
                 </a>
             </li>
             <li>
-              <a href="#contact">Goals</a>
+              <a>
+                <NavLink to="/Goals">
+                  Goals
+                </NavLink>
+              </a>
             </li>
             <li>
-              <a href="#about">Personal Information</a>
+              <a>
+                <NavLink to="/PersonInformation">
+                Personal Information
+                </NavLink>
+              </a>
+            </li>
+            <li>
+              <a>
+                <NavLink to="/Transactions">
+                  Transactions
+                </NavLink>
+              </a>
             </li>
             <li>
               <a
