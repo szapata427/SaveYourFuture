@@ -3,12 +3,12 @@ import "./App.css";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import LoginHomePageRoutes from "./Components/HomeLoginRoutes";
-import actionCreator from './Store/Actions/UserAction'
-import { connect } from 'react-redux'
-import { currentUser } from '../src/Store/Actions/UserAction'
-import { ReactRouter, Switch, Route} from 'react-router-dom'
-import HomePageAccountMaster from './Components/HomePageAccountMasterComponent'
-
+import actionCreator from "./Store/Actions/UserAction";
+import { connect } from "react-redux";
+import { currentUser } from "../src/Store/Actions/UserAction";
+import { ReactRouter, Switch, Route } from "react-router-dom";
+import HomePageAccountMaster from "./Components/HomePageAccountMasterComponent";
+import SavingsHomePageMaster from "./Components/SavingsHomePageMaster";
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -39,58 +39,53 @@ class App extends Component {
     // monitor changes for the user
     let userid = null;
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ 
+      this.setState({
         isSignedIn: !!user,
-        loadingFireBaseInfo: false 
+        loadingFireBaseInfo: false
       });
       console.log("user", user);
       if (this.state.isSignedIn == true) {
+        let userEmail = user.email;
+        let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
+        console.log(emailsearchurl);
 
-      
-      let userEmail = user.email;
-      let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
-      console.log(emailsearchurl);
-
-      fetch(emailsearchurl)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-
-          if (data.result.Error) {
-
-            console.log("error in searching email user on server side")
-          }
-          else if (data.result == null) {
+        fetch(emailsearchurl)
+          .then(response => response.json())
+          .then(data => {
             console.log(data);
-            console.log(
-              "user is signed in but user not saved in database, need to save"
-            );
-            this.saveUserToDatabase(user, result => {
-              console.log(result);
-              if (result.Id) {
-                this.props.currentUser(result)
-                userid = result.Id;
-                this.setState({
-                  userDatabaseId: userid
-                });
-              } else {
-                console.log(result);
-              }
-            });
-          } else {
-            console.log("user is signed in and in database");
-            this.props.currentUser(data.result)
-            userid = data.result.Id;
-            console.log(userid);
-            this.setState({
-              userDatabaseId: userid
-            });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
 
+            if (data.result.Error) {
+              console.log("error in searching email user on server side");
+            } else if (data.result == null) {
+              console.log(data);
+              console.log(
+                "user is signed in but user not saved in database, need to save"
+              );
+              this.saveUserToDatabase(user, result => {
+                console.log(result);
+                if (result.Id) {
+                  this.props.currentUser(result);
+                  userid = result.Id;
+                  this.setState({
+                    userDatabaseId: userid
+                  });
+                } else {
+                  console.log(result);
+                }
+              });
+            } else {
+              console.log("user is signed in and in database");
+              this.props.currentUser(data.result);
+              userid = data.result.Id;
+              console.log(userid);
+              this.setState({
+                userDatabaseId: userid
+              });
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }
     });
   };
@@ -120,28 +115,27 @@ class App extends Component {
       .then(resp => callback(resp));
   };
 
-
-  
   render() {
     console.log(this.state);
     return (
       <div className="App">
-
-        {this.state.loadingFireBaseInfo ?
-        <div id="loading-sign-home-page-wrapper">
-          <div className="loader">Loading</div> 
-        </div>
-        : 
-        
-        this.state.isSignedIn ? (
+        {this.state.loadingFireBaseInfo ? (
+          <div id="loading-sign-home-page-wrapper">
+            <div className="loader">Loading</div>
+          </div>
+        ) : this.state.isSignedIn ? (
           <span>
             <LoginHomePageRoutes signedIn={this.state.isSignedIn} />
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
             <Switch>
-            <Route
-            path="/AccountHome"
-            render={() => <HomePageAccountMaster user={this.state.user} />}
-          />
+              <Route
+                path="/AccountHome"
+                render={() => <HomePageAccountMaster user={this.state.user} />}
+              />
+              <Route
+                path="/Savings"
+                render={() => <SavingsHomePageMaster user={this.state.user} />}
+              />
             </Switch>
           </span>
         ) : (
@@ -160,19 +154,21 @@ class App extends Component {
             </div>
           </React.Fragment>
         )}
-
-
-
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  console.log('hit the distpach in app.js')
+const mapDispatchToProps = dispatch => {
+  console.log("hit the distpach in app.js");
   return {
-    currentUser: (theuser) => { dispatch({type: "CURRENT_USER", value: theuser})}
-  }
-}
+    currentUser: theuser => {
+      dispatch({ type: "CURRENT_USER", value: theuser });
+    }
+  };
+};
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
