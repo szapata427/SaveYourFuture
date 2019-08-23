@@ -8,6 +8,10 @@ const userReducer = (state = initState, action) => {
         case "CURRENT_USER":
             console.log('user reducer', action.value)
             return {...state, user: action.value}
+        
+        case "DELETE_USER":
+            console.log('deleting user reducer')
+            return {user: ""}
     }
     return state
 }
