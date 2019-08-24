@@ -74,9 +74,7 @@ class App extends Component {
                 }
               });
             } 
-            else if (data.result.incudes('Error')) {
-              console.log("error in searching email user on server side");
-            } else {
+            else if (data.result.Email) {
               console.log("user is signed in and in database");
               this.props.currentUser(data.result);
               userid = data.result.Id;
@@ -84,6 +82,9 @@ class App extends Component {
               this.setState({
                 userDatabaseId: userid
               });
+            } else {
+              console.log("error in searching email user on server side");
+
             }
           })
           .catch(error => {
