@@ -10,11 +10,11 @@ class TransactionMasterComponent extends Component {
 
     render() {
         return(
-            <div>
+            <React.Fragment>
                 <AddTransaction />
                 All Current Transactions
 
-            </div>
+            </React.Fragment>
         )
     }
 }
