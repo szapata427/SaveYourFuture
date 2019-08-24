@@ -6,10 +6,10 @@ import { NavLink } from "react-router-dom";
 
 class ShowCurrentTransactions extends Component {
 
-    
+
     render() {
         return(
-            <div>
+            <div id="showcurrenttransactions-main-wrapper-div">
                 All Current Transactions
             </div>
         )

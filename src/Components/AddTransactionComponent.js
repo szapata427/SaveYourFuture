@@ -6,14 +6,29 @@ import { NavLink } from "react-router-dom";
 
 class AddTransaction extends Component {
 
+    state = {
+        transactionAmount: 0
+    }
+
+    handleChange = (event) => {
+        console.log(event.target.value)
+    }
 
     render() {
         return (
             <React.Fragment>
-            <div>
+            <div id="addtransaction-form-main-wrapper">
                 <form>
                     <label>Amount</label>
-                <input type="text"/> 
+                <input type="number" label="Amount" min="0.01" onChange={this.handleChange}/>
+                <br></br> 
+                <label>Notes</label>
+                <input type="text" label="Notes" min="0.01" onChange={this.handleChange}/>
+                <br></br> 
+                <select class="select-options-tranactions" onChange={this.handleChange}>
+                <option value="Withdrawl">Withdrawl</option>
+                <option value="Deposit">Deposit</option>
+                </select>
 
                 </form>
             </div>
