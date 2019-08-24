@@ -53,11 +53,10 @@ class App extends Component {
         fetch(emailsearchurl)
           .then(response => response.json())
           .then(data => {
-            console.log(data);
+            console.log(data.result);
 
-            if (data.result.Error) {
-              console.log("error in searching email user on server side");
-            } else if (data.result == null) {
+            if (data.result == null) {
+              
               console.log(data);
               console.log(
                 "user is signed in but user not saved in database, need to save"
@@ -74,6 +73,9 @@ class App extends Component {
                   console.log(result);
                 }
               });
+            } 
+            else if (data.result.incudes('Error')) {
+              console.log("error in searching email user on server side");
             } else {
               console.log("user is signed in and in database");
               this.props.currentUser(data.result);
