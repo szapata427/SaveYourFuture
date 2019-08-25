@@ -8,7 +8,8 @@ import { number } from "prop-types";
 class AddTransaction extends Component {
 
     state = {
-        transactionAmount: null
+        transactionAmount: null,
+        numOfDecimalsTwo: false
     }
 
     handleChange = (event) => {
@@ -16,21 +17,24 @@ class AddTransaction extends Component {
         let htmlname = event.target.name
         let inputValue = event.target.value
         let numberDecimals;
+        let inputstring
+
         if (htmlname == "Amount" && inputValue)  {
             this.setState({
                 transactionAmount: event.target.value
             })
             console.log(inputValue)
-            if (inputstring) 
-            var inputstring = inputValue.toString
-            if (inputstring && inputstring.includes('.')) {
-
-                numberDecimals = inputValue.toFixed(2)
-            }
-                if (numberDecimals) {
-                    var lastTwoDecimals = numberDecimals.split('.')[1]
-                        if (lastTwoDecimals && lastTwoDecimals.length == 2) {
-                            console.log('hit two decimals')
+            inputValue = parseFloat(inputValue)
+             inputstring = inputValue.toString()
+            var hasDecimals = inputstring.indexOf('.')
+            console.log(hasDecimals)
+            if (hasDecimals != -1) {
+                    var lastTwoDecimals = inputstring.split('.')[1]
+                        if (lastTwoDecimals.length === 2) {
+                            console.log('hit two decimals', lastTwoDecimals)
+                            this.setState({
+                                numOfDecimalsTwo: true
+                            })
                 }
 
                 }
@@ -49,7 +53,8 @@ class AddTransaction extends Component {
                 </select>
                 </div>
                     <label class="transaction-label">Amount</label>
-                <input id="transaction-amount-input" value={this.state.transactionAmount} pattern="^\d+(?:\.\d{1,2})?$" placeholder="0.00" step=".01" type="number" name="Amount" min="0.01" onChange={this.handleChange}/>
+                <input id="transaction-amount-input" value={this.state.transactionAmount} pattern="^\d+(?:\.\d{1,2})?$" placeholder="0.00" 
+                step=".01" type="number" name="Amount" min="0.01" onChange={this.handleChange}/>
                 <br></br> 
                 <label class="transaction-label">Notes</label>
                 <input id="transaction-notes-input" type="text" label="Notes" min="0.01" onChange={this.handleChange}/>
