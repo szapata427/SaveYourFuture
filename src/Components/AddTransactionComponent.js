@@ -17,11 +17,18 @@ class AddTransaction extends Component {
         let htmlname = event.target.name
         let inputValue = event.target.value
         let numberDecimals;
-        let inputstring
+        let inputstring;
+        var inputDecimals;
+        let inputBeforeDecimals;
 
         if (htmlname == "Amount" && inputValue)  {
+            if (this.state.numOfDecimalsTwo) {
+                inputDecimals = inputValue.toString().split('.')[1].slice(0,2)
+                inputBeforeDecimals = inputValue.toString().split('.')[0]
+                inputValue = parseFloat(inputBeforeDecimals + '.' + inputDecimals)
+            }
             this.setState({
-                transactionAmount: event.target.value
+                transactionAmount: inputValue
             })
             console.log(inputValue)
             inputValue = parseFloat(inputValue)
