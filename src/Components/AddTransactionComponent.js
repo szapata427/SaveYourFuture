@@ -10,7 +10,7 @@ class AddTransaction extends Component {
     numOfDecimalsTwo: false,
     transactionAmount: null,
     transactionType: "Withdrawl",
-    transactionNotes: null
+    transactionNotes: null,
 
   };
 
@@ -73,7 +73,7 @@ class AddTransaction extends Component {
         Amount: this.state.transactionAmount,
         Notes: this.state.transactionNotes,
         Type: this.state.transactionType,
-        UserId: 1
+        UserId: this.props.user.Id
     }
       console.log(event)
       console.log(this.state)
@@ -148,7 +148,14 @@ class AddTransaction extends Component {
   }
 }
 
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+      user: state.user.user
+    };
+  };
+
 export default connect(
-  null,
+    mapStateToProps,
   null
 )(AddTransaction);
