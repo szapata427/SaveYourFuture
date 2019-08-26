@@ -177,6 +177,10 @@ li a:hover:not(.active) {
 
 }
 
+select-options-tranactions[value="Withdrawl"]{
+  color: lightgreen;
+}
+
 .select-options-tranactions {
   background-color: rgb(21, 88, 233);
   width: 25%;
@@ -189,6 +193,11 @@ li a:hover:not(.active) {
   margin-bottom: 3%;
 }
 
+
+
+
+
+
 #transaction-notes-input {
   padding-top: 1%;
   padding-right: 2%;
@@ -196,6 +205,7 @@ li a:hover:not(.active) {
   margin-left: 1.6%;
 
 }
+
 #transaction-amount-input {
   padding-top: 1%;
   padding-right: 2%;
@@ -210,3 +220,17 @@ li a:hover:not(.active) {
 /* .add-transaction-form {
   width: 100%;
 } */
+
+.add-transaction-submit-button {
+  background-color: lightgreen;
+  color: white;
+  font-size: 1em;
+  border: 1px solid white;
+  border-radius: 7px;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  width: 15% !important;
+  font-weight: 600;
+  text-align: center;
+  
+}
