@@ -9,7 +9,7 @@ class AddTransaction extends Component {
   state = {
     numOfDecimalsTwo: false,
     transactionAmount: null,
-    transactionType: null,
+    transactionType: "Withdrawl",
     transactionNotes: null
 
   };
@@ -69,8 +69,32 @@ class AddTransaction extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    let transactionInfo = {
+        Amount: this.state.transactionAmount,
+        Notes: this.state.transactionNotes,
+        Type: this.state.transactionType,
+        UserId: 1
+    }
       console.log(event)
       console.log(this.state)
+      this.submitTransactionToDataBase(transactionInfo, (response) => {
+          console.log(response)
+      })
+  }
+
+  submitTransactionToDataBase = (info, callback) => {
+      console.log(info)
+      let url = 'http://localhost:5000/saveyourfuture/api/v1.0/AddTransaction'
+      fetch(url, {
+          method: "Post",
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+          },
+          body: JSON.stringify(info)
+
+      }).then(response => response.json())
+      .then(resp => callback(resp))
   }
 
 
