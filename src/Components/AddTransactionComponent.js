@@ -78,7 +78,10 @@ class AddTransaction extends Component {
       console.log(event)
       console.log(this.state)
       this.submitTransactionToDataBase(transactionInfo, (response) => {
-          console.log(response)
+          console.log(response.result)
+          if (response.result["Success"] == true) {
+              console.log(`transaction was added`)
+          }
       })
   }
 
@@ -95,6 +98,7 @@ class AddTransaction extends Component {
 
       }).then(response => response.json())
       .then(resp => callback(resp))
+
   }
 
 

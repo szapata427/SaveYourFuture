@@ -13,6 +13,9 @@ class IndividualTransactionComponent extends Component {
         console.log(this.props.transaction)
         return(
             <React.Fragment>
+                <div>
+                    {this.props.transaction.Amount}
+                </div>
 
             </React.Fragment>
         )
