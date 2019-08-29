@@ -4,19 +4,19 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AddTransaction from './AddTransactionComponent'
+import {fetchUsersTransactions} from '../Store/Actions/TransactionActions'
 
-const url = "http://localhost:5000/"
+export const url = "http://localhost:5000/"
 
 class TransactionMasterComponent extends Component {
 
 
-    componentDidUpdate(prevProps) {
-    console.log(this.props)
-    if (this.props.user) {
-        fetch(`${url}/saveyourfuture/api/v1.0/UsersTransactions?UserId=${this.props.user.Id}`)
-        .then(response => response.json())
-        .then(data => console.log(data))
-    }
+    componentWillReceiveProps(nextProps) {
+        console.log(`current props ${this.props} and nextprops ${nextProps}`)
+        if (this.props.user !== nextProps.user) {
+            console.log(`props are different ${nextProps.user}`)
+            this.props.fetchUsersTransactions(nextProps.user)
+        }
 
     }
 
@@ -40,4 +40,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(TransactionMasterComponent)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUsersTransactions: (userInfo) => dispatch(fetchUsersTransactions(userInfo))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionMasterComponent)
