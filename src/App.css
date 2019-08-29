@@ -260,6 +260,9 @@ padding-bottom: 2%;
 
 }
 
+.transaction-table-rows > th {
+  padding-bottom: 1.5em;
+}
 
 .transaction-table-rows {
   width: 33.33%;
@@ -267,6 +270,7 @@ padding-bottom: 2%;
 
 
 }
+
 .transaction-table-rows > td {
   padding-bottom: 1.5em;
 

@@ -15,7 +15,7 @@ class IndividualTransactionComponent extends Component {
             <React.Fragment>
                 
                 <tr className="transaction-table-rows">
-                    <td className="transactions-span-per-value">{this.props.transaction.Amount}</td>
+                    <td className="transactions-span-per-value">${this.props.transaction.Amount}</td>
                     <td className="transactions-span-per-value">{this.props.transaction.Type}</td>
                     <td className="transactions-span-per-value">{this.props.transaction.Notes}</td>
                     <td className="transactions-span-per-value">{this.props.transaction.CreatedOn}</td>

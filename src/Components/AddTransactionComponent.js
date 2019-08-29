@@ -8,7 +8,7 @@ import { number } from "prop-types";
 class AddTransaction extends Component {
   state = {
     numOfDecimalsTwo: false,
-    transactionAmount: null,
+    transactionAmount: "",
     transactionType: "Withdrawl",
     transactionNotes: null,
 
@@ -24,16 +24,24 @@ class AddTransaction extends Component {
     let inputDecimals;
     let inputBeforeDecimals;
     let hasDecimals;
-
+    if (inputValue == "") {
+        // inputvalue is empty so need to change the state to make the input field blank
+        this.setState({
+            transactionAmount: null
+        })
+    }
     if (htmlname == "Amount" && inputValue) {
       if (this.state.numOfDecimalsTwo) {
+
         inputDecimals = inputValue
           .toString()
           .split(".")[1]
           .slice(0, 2);
+
         inputBeforeDecimals = inputValue.toString().split(".")[0];
         inputValue = parseFloat(inputBeforeDecimals + "." + inputDecimals);
       }
+
       this.setState({
         transactionAmount: inputValue
       });
@@ -49,6 +57,11 @@ class AddTransaction extends Component {
           this.setState({
             numOfDecimalsTwo: true
           });
+        }
+        else {
+            this.setState({
+                numOfDecimalsTwo: false
+            })
         }
       }
     }
