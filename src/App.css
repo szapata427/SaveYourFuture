@@ -234,3 +234,29 @@ select-options-tranactions[value="Withdrawl"]{
   text-align: center;
   
 }
+
+/* transactions page all */
+
+
+
+.all-transactions-main-div-container{
+background-color: rgb(205, 248, 205);
+height: 40em;
+overflow: auto;
+}
+
+.indiviudal-transaction-container {
+margin-left: 5%;
+padding-bottom: 2%;
+
+}
+
+.indiviudal-transaction-container > * {
+display: table-cell;
+width: 31%;
+}
+
+
+.transactions-span-per-value {
+  /* margin-right: 15%; */
+}

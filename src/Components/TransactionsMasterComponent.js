@@ -29,8 +29,9 @@ class TransactionMasterComponent extends Component {
             <React.Fragment>
                 <AddTransaction />
                 All Current Transactions
-            
+                <div className="all-transactions-main-div-container">
             <ShowCurrentTransactions />
+            </div>
             </React.Fragment>
         )
     }

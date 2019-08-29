@@ -13,9 +13,13 @@ class IndividualTransactionComponent extends Component {
         console.log(this.props.transaction)
         return(
             <React.Fragment>
-                <div>
-                    {this.props.transaction.Amount}
-                </div>
+                
+                    <div className="indiviudal-transaction-container">
+                    <tr className="transactions-span-per-value">{this.props.transaction.Amount}</tr>
+                    <tr className="transactions-span-per-value">{this.props.transaction.Type}</tr>
+                    <tr className="transactions-span-per-value">{this.props.transaction.Notes}</tr>
+                    <tr className="transactions-span-per-value">{this.props.transaction.CreatedOn}</tr>
+                    </div>
 
             </React.Fragment>
         )
