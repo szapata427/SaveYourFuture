@@ -4,6 +4,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AddTransaction from './AddTransactionComponent'
+import ShowCurrentTransactions from './CurrentTransactionsComponent'
 import {fetchUsersTransactions} from '../Store/Actions/TransactionActions'
 
 export const url = "http://localhost:5000/"
@@ -16,17 +17,25 @@ class TransactionMasterComponent extends Component {
         if (this.props.user !== nextProps.user) {
             console.log(`props are different ${nextProps.user}`)
             this.props.fetchUsersTransactions(nextProps.user)
+            this.sendingTransactions()
         }
 
     }
 
+    sendingTransactions = () => {
+        console.log(this.props.currentTransactions)
+    //     return 
+    //         <ShowCurrentTransactions />
+        
+    }
+
     render() {
-        console.log(this.props)
         return(
             <React.Fragment>
                 <AddTransaction />
                 All Current Transactions
-
+            
+            <ShowCurrentTransactions />
             </React.Fragment>
         )
     }
@@ -34,13 +43,14 @@ class TransactionMasterComponent extends Component {
 
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
-        user: state.user
+        user: state.user,
+        currentTransactions: state.currentTransactions
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
+    console.log(`hitting dispatch for all transactions`)
     return {
         fetchUsersTransactions: (userInfo) => dispatch(fetchUsersTransactions(userInfo))
     }
