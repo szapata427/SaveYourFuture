@@ -14,12 +14,12 @@ class IndividualTransactionComponent extends Component {
         return(
             <React.Fragment>
                 
-                    <div className="indiviudal-transaction-container">
-                    <tr className="transactions-span-per-value">{this.props.transaction.Amount}</tr>
-                    <tr className="transactions-span-per-value">{this.props.transaction.Type}</tr>
-                    <tr className="transactions-span-per-value">{this.props.transaction.Notes}</tr>
-                    <tr className="transactions-span-per-value">{this.props.transaction.CreatedOn}</tr>
-                    </div>
+                <tr className="transaction-table-rows">
+                    <td className="transactions-span-per-value">{this.props.transaction.Amount}</td>
+                    <td className="transactions-span-per-value">{this.props.transaction.Type}</td>
+                    <td className="transactions-span-per-value">{this.props.transaction.Notes}</td>
+                    <td className="transactions-span-per-value">{this.props.transaction.CreatedOn}</td>
+                        </tr>
 
             </React.Fragment>
         )

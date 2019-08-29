@@ -3,53 +3,58 @@ import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import AddTransaction from './AddTransactionComponent'
-import ShowCurrentTransactions from './CurrentTransactionsComponent'
-import {fetchUsersTransactions} from '../Store/Actions/TransactionActions'
+import AddTransaction from "./AddTransactionComponent";
+import ShowCurrentTransactions from "./CurrentTransactionsComponent";
+import { fetchUsersTransactions } from "../Store/Actions/TransactionActions";
 
-export const url = "http://localhost:5000/"
+export const url = "http://localhost:5000/";
 
 class TransactionMasterComponent extends Component {
-
-
-
-    componentWillReceiveProps(nextProps) {
-        console.log(`current props ${this.props} and nextprops ${nextProps}`)
-        if (this.props.user !== nextProps.user) {
-            console.log(`props are different ${nextProps.user}`)
-            this.props.fetchUsersTransactions(nextProps.user)
-        }
-
+  componentWillReceiveProps(nextProps) {
+    console.log(`current props ${this.props} and nextprops ${nextProps}`);
+    if (this.props.user !== nextProps.user) {
+      console.log(`props are different ${nextProps.user}`);
+      this.props.fetchUsersTransactions(nextProps.user);
     }
+  }
 
-
-
-    render() {
-        return(
-            <React.Fragment>
-                <AddTransaction />
-                All Current Transactions
-                <div className="all-transactions-main-div-container">
-            <ShowCurrentTransactions />
-            </div>
-            </React.Fragment>
-        )
-    }
+  render() {
+    return (
+      <React.Fragment>
+        <AddTransaction />
+        All Current Transactions
+        <div className="all-transactions-main-div-container">
+            <table className="transactions-table">
+            <tr className="transaction-table-rows">
+             <th>Amount</th>
+             <th>Type</th>
+             <th>Notes</th>
+             <th>Date Created</th>
+            </tr>
+          <ShowCurrentTransactions />
+            </table>
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    currentTransactions: state.currentTransactions
+  };
+};
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user,
-        currentTransactions: state.currentTransactions
-    }
-}
+const mapDispatchToProps = dispatch => {
+  console.log(`hitting dispatch for all transactions`);
+  return {
+    fetchUsersTransactions: userInfo =>
+      dispatch(fetchUsersTransactions(userInfo))
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
-    console.log(`hitting dispatch for all transactions`)
-    return {
-        fetchUsersTransactions: (userInfo) => dispatch(fetchUsersTransactions(userInfo))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionMasterComponent)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TransactionMasterComponent);
