@@ -241,7 +241,8 @@ select-options-tranactions[value="Withdrawl"]{
 
 .all-transactions-main-div-container{
 background-color: rgb(205, 248, 205);
-height: 40em;
+height: auto;
+max-height: 35em;
 overflow: auto;
 }
 
@@ -252,17 +253,31 @@ padding-bottom: 2%;
 }
 
 .transactions-table {
-  margin-left: 20%;
+  margin-left: 12%;
   width: 90%;
+  border-collapse: collapse; 
+  table-layout: fixed;
+
 }
 
 
 .transaction-table-rows {
   width: 33.33%;
+  text-align:center; 
+
+
+}
+.transaction-table-rows > td {
+  padding-bottom: 1.5em;
 
 }
 
 
+
 .transactions-span-per-value {
   /* margin-right: 15%; */
+  /* white-space : pre-wrap; */
+  word-wrap:break-word;
+
+
 }
