@@ -45,24 +45,19 @@ class AddTransaction extends Component {
       this.setState({
         transactionAmount: inputValue
       });
-      console.log(inputValue);
-      inputValue = parseFloat(inputValue);
-      inputstring = inputValue.toString();
-      hasDecimals = inputstring.indexOf(".");
-      console.log(hasDecimals);
-      if (hasDecimals != -1) {
-        var lastTwoDecimals = inputstring.split(".")[1];
-        if (lastTwoDecimals.length === 2) {
-          console.log("hit two decimals", lastTwoDecimals);
+
+      if (this.checkIfAmountHasTwoDecimals(inputValue)) {
           this.setState({
-            numOfDecimalsTwo: true
-          });
-        }
-        else {
-            this.setState({
-                numOfDecimalsTwo: false
-            })
-        }
+            numOfDecimalsTwo: true,
+
+          })
+      }
+
+      else {
+        this.setState({
+            numOfDecimalsTwo: false,
+
+          })
       }
     }
 
@@ -87,6 +82,11 @@ class AddTransaction extends Component {
         Notes: this.state.transactionNotes,
         Type: this.state.transactionType,
         UserId: this.props.user.Id
+    }
+
+    if (!this.checkIfAmountHasTwoDecimals(transactionInfo.Amount)) {
+        transactionInfo["Amount"] += ".00"
+        
     }
       console.log(event)
       console.log(this.state)
