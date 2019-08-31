@@ -12,6 +12,13 @@ export const fetchUsersTransactions = (user) => {
       .then(response => response.json())
       .then(data => {
           console.log(`data form the fetch ${data}`)
-          dispatch({type: 'FETCH_USERS_TRANSACTIONS', value: data})});
+          dispatch({type: 'FETCH_USERS_TRANSACTIONS', value: data.result})});
   };
 };
+
+
+export const addTransactionToCurrent = (transInfo) => {
+   return ({
+        type: "ADD_NEW_TRANSACTION", value: transInfo
+    })
+}

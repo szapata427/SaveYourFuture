@@ -121,6 +121,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
+    console.log("hi")
     return (
       <div className="App">
         {this.state.loadingFireBaseInfo ? (

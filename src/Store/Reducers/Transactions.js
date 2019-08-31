@@ -3,12 +3,18 @@ const initState = {
 }
 
 const fetchUsersTransactions = (state = initState, action) => {
-    console.log(`${state} state for fetching users transactions in reducer, and action is ${action}`)
+    console.log(state, 'current state of transactions')
+    console.log(action.value)
     switch(action.type) {
         case "FETCH_USERS_TRANSACTIONS":
             console.log('chaging state for users transactions in reducer')
             return {...state, currentTransactions: action.value}
-    }
+        case "ADD_NEW_TRANSACTION":
+            let newTrans = action.value
+            console.log(action.value)
+            return [...state.currentTransactions, newTrans]
+        }
+        
     return state
 }
 

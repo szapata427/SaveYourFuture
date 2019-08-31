@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
@@ -12,7 +11,10 @@ class ShowCurrentTransactions extends Component {
 
 
     mapFetchTransactions = () => {
-        let transactionsArrayFromProps = this.props.currentTransactions.result
+        console.log('hitmap function after adding transaction')
+        console.log(this.props)
+        let transactionsArrayFromProps = this.props.currentTransactions
+        console.log(transactionsArrayFromProps)
         return transactionsArrayFromProps.map(trans => {
             console.log(trans)
             return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
@@ -20,6 +22,7 @@ class ShowCurrentTransactions extends Component {
         })
         
     }
+
 
 
     render() {
@@ -36,7 +39,7 @@ class ShowCurrentTransactions extends Component {
 
 
 const mapStateToProps = (state) => {
-
+    console.log(state, 'in currentransactions')
     return {
         currentTransactions: state.transactions.currentTransactions
     }

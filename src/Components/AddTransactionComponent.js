@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
+import {addTransactionToCurrent} from "../Store/Actions/TransactionActions";
+import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
+
 
 class AddTransaction extends Component {
   state = {
@@ -46,7 +48,7 @@ class AddTransaction extends Component {
         transactionAmount: inputValue
       });
 
-      if (this.checkIfAmountHasTwoDecimals(inputValue)) {
+      if (checkIfAmountHasTwoDecimals(inputValue)) {
           this.setState({
             numOfDecimalsTwo: true,
 
@@ -77,6 +79,7 @@ class AddTransaction extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
     let transactionInfo = {
         Amount: this.state.transactionAmount,
         Notes: this.state.transactionNotes,
@@ -84,7 +87,7 @@ class AddTransaction extends Component {
         UserId: this.props.user.Id
     }
 
-    if (!this.checkIfAmountHasTwoDecimals(transactionInfo.Amount)) {
+    if (!checkIfAmountHasTwoDecimals(transactionInfo.Amount)) {
         transactionInfo["Amount"] += ".00"
         
     }
@@ -94,6 +97,8 @@ class AddTransaction extends Component {
           console.log(response.result)
           if (response.result["Success"] == true) {
               console.log(`transaction was added`)
+              this.props.addTransactionToCurrent(response.result)
+
           }
       })
   }
@@ -140,7 +145,7 @@ class AddTransaction extends Component {
               id="transaction-amount-input"
               value={this.state.transactionAmount}
               pattern="^\d+(?:\.\d{1,2})?$"
-              placeholder="0.00"
+              placeholder="$0.00"
               step=".01"
               type="number"
               name="Amount"
@@ -172,7 +177,13 @@ const mapStateToProps = state => {
     };
   };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addTransactionToCurrent: (transInfo) => dispatch(addTransactionToCurrent(transInfo))
+    }
+}
+
 export default connect(
     mapStateToProps,
-  null
+  mapDispatchToProps
 )(AddTransaction);
