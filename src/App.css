@@ -233,6 +233,7 @@ select-options-tranactions[value="Withdrawl"]{
   font-weight: 600;
   text-align: center;
   
+  
 }
 
 /* transactions page all */
@@ -244,6 +245,10 @@ background-color: rgb(205, 248, 205);
 height: auto;
 max-height: 35em;
 overflow: auto;
+margin-bottom: 2em;
+font-family: 'Noto Sans', sans-serif;
+font-weight: 700;
+
 }
 
 .indiviudal-transaction-container {
@@ -253,27 +258,40 @@ padding-bottom: 2%;
 }
 
 .transactions-table {
-  margin-left: 12%;
+  margin-left: 19%;
   width: 70%;
   border-collapse: collapse; 
   table-layout: fixed;
+  /* border-collapse:separate;  */
+  border-spacing:1.5em;
+  
+
 
 }
 
-.transaction-table-rows > th {
-  padding-bottom: 1.5em;
+.transaction-table-rows  {
+  border: 1px solid black;
+  background-color:white;
+  border-radius: 10%;
+  
 }
 
+#transaction-table-column-names {
+  font-size: 2em;
+  color: blue;
+  background-color: lightcyan;
+ border: 2px solid blue;
+}
 
 .transaction-table-rows {
+  text-align:auto;
 
-  text-align:center; 
-
-
+  
 }
 
 .transaction-table-rows > td {
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
+  padding-top : 1em;
 
 }
 
@@ -281,5 +299,11 @@ padding-bottom: 2%;
 
 .transactions-span-per-value {
   word-wrap:break-word;
+}
 
+[transtype="Deposit"] {
+  color: green;
+}
+[transtype="Withdrawl"] {
+  color: red;
 }

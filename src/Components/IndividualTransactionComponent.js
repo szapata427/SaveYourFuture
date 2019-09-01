@@ -6,17 +6,18 @@ import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
 
 class IndividualTransactionComponent extends Component {
     render() {
+        let transtype = this.props.transaction.Type
 
     return (
       <React.Fragment>
-        <tr className="transaction-table-rows">
-          <td className="transactions-span-per-value">
+        <tr className="transaction-table-rows" transtype={transtype}> 
+          <td className="transactions-span-per-value" >
             $
             {checkIfAmountHasTwoDecimals(this.props.transaction.Amount)
               ? this.props.transaction.Amount
               : this.props.transaction.Amount + ".00"}
           </td>
-          <td className="transactions-span-per-value">
+          <td className="transactions-span-per-value" >
             {this.props.transaction.Type}
           </td>
           <td className="transactions-span-per-value">

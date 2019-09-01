@@ -33,7 +33,7 @@ class TransactionMasterComponent extends Component {
         All Current Transactions
         <div className="all-transactions-main-div-container">
             <table className="transactions-table">
-            <tr className="transaction-table-rows">
+            <tr id="transaction-table-column-names">
              <th>Amount</th>
              <th>Type</th>
              <th>Notes</th>
