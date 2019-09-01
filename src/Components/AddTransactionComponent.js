@@ -122,18 +122,6 @@ class AddTransaction extends Component {
 
   }
 
-//   componentDidUpdate(prevProps) {
-//       console.log(prevProps)
-//       if (this.props.currentTransactions.length !== prevProps.currentTransactions.length) {
-//           console.log('change in state in addtransaction component')
-//           let transactionsArrayFromProps = this.props.currentTransactions
-//           console.log(transactionsArrayFromProps)
-//          return <CurrentTransactionsComponent allNewTransactions={transactionsArrayFromProps} />
-
-//       }
-
-//   }
-
 
 
   render() {

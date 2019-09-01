@@ -23,15 +23,6 @@ class ShowCurrentTransactions extends Component {
         
     }
 
-    transactionWasAdded() {
-
-
-    }
-
-    componentDidUpdate(prevProps) {
-        console.log(prevProps)
-        console.log(this.props)
-    }
 
     render() {
 
