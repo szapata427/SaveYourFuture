@@ -1,5 +1,5 @@
 const initState = {
-    currentTransactions: null
+    currentTransactions: []
 }
 
 const fetchUsersTransactions = (state = initState, action) => {
@@ -8,11 +8,15 @@ const fetchUsersTransactions = (state = initState, action) => {
     switch(action.type) {
         case "FETCH_USERS_TRANSACTIONS":
             console.log('chaging state for users transactions in reducer')
-            return {...state, currentTransactions: action.value}
+            return {currentTransactions: action.value}
+
+
+
         case "ADD_NEW_TRANSACTION":
             let newTrans = action.value
+            let newStateArray = [...state.currentTransactions, newTrans]
             console.log(action.value)
-            return [...state.currentTransactions, newTrans]
+            return {currentTransactions: newStateArray}
         }
         
     return state

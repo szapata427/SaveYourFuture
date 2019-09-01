@@ -5,8 +5,8 @@ import { number } from "prop-types";
 import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
 
 class IndividualTransactionComponent extends Component {
-  render() {
-    console.log(this.props.transaction);
+    render() {
+
     return (
       <React.Fragment>
         <tr className="transaction-table-rows">

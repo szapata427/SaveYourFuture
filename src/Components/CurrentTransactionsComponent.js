@@ -16,20 +16,28 @@ class ShowCurrentTransactions extends Component {
         let transactionsArrayFromProps = this.props.currentTransactions
         console.log(transactionsArrayFromProps)
         return transactionsArrayFromProps.map(trans => {
-            console.log(trans)
+
             return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
 
         })
         
     }
 
+    transactionWasAdded() {
 
+
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(prevProps)
+        console.log(this.props)
+    }
 
     render() {
 
         return(
             <React.Fragment>
-                {this.props.currentTransactions ? this.mapFetchTransactions() : null}
+                {this.props.currentTransactions ? this.mapFetchTransactions() : this.transactionWasAdded()}
             </React.Fragment>
         )
     }
@@ -40,9 +48,12 @@ class ShowCurrentTransactions extends Component {
 
 const mapStateToProps = (state) => {
     console.log(state, 'in currentransactions')
-    return {
-        currentTransactions: state.transactions.currentTransactions
+
+        return {
+            currentTransactions: state.currentTransactions.currentTransactions
+        }
+        
     }
 
-}
+
 export default connect(mapStateToProps, null)(ShowCurrentTransactions)

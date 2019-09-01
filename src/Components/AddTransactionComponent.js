@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
 import {addTransactionToCurrent} from "../Store/Actions/TransactionActions";
 import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
+import IndividualTransactionComponent from './IndividualTransactionComponent'
+import CurrentTransactionsComponent from "./CurrentTransactionsComponent";
+
 
 
 class AddTransaction extends Component {
@@ -119,6 +122,18 @@ class AddTransaction extends Component {
 
   }
 
+//   componentDidUpdate(prevProps) {
+//       console.log(prevProps)
+//       if (this.props.currentTransactions.length !== prevProps.currentTransactions.length) {
+//           console.log('change in state in addtransaction component')
+//           let transactionsArrayFromProps = this.props.currentTransactions
+//           console.log(transactionsArrayFromProps)
+//          return <CurrentTransactionsComponent allNewTransactions={transactionsArrayFromProps} />
+
+//       }
+
+//   }
+
 
 
   render() {
@@ -173,7 +188,8 @@ class AddTransaction extends Component {
 const mapStateToProps = state => {
     console.log(state);
     return {
-      user: state.user.user
+      user: state.user.user,
+      currentTransactions: state.transactions
     };
   };
 
