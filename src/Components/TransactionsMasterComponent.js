@@ -32,15 +32,7 @@ class TransactionMasterComponent extends Component {
         <AddTransaction />
         All Current Transactions
         <div className="all-transactions-main-div-container">
-            <table className="transactions-table">
-            <tr id="transaction-table-column-names">
-             <th>Amount</th>
-             <th>Type</th>
-             <th>Notes</th>
-             <th>Date Created</th>
-            </tr>
           <ShowCurrentTransactions />
-            </table>
         </div>
       </React.Fragment>
     );

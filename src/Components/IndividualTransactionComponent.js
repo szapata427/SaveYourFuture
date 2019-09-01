@@ -10,23 +10,23 @@ class IndividualTransactionComponent extends Component {
 
     return (
       <React.Fragment>
-        <tr className="transaction-table-rows" transtype={transtype}> 
-          <td className="transactions-span-per-value" >
+        <div className="transaction-table-rows" transtype={transtype}> 
+          <span className="transactions-span-per-value" >
             $
             {checkIfAmountHasTwoDecimals(this.props.transaction.Amount)
               ? this.props.transaction.Amount
               : this.props.transaction.Amount + ".00"}
-          </td>
-          <td className="transactions-span-per-value" >
+          </span>
+          <span className="transactions-span-per-value" >
             {this.props.transaction.Type}
-          </td>
-          <td className="transactions-span-per-value">
+          </span>
+          <span className="transactions-span-per-value">
             {this.props.transaction.Notes}
-          </td>
-          <td className="transactions-span-per-value">
+          </span>
+          <span className="transactions-span-per-value">
             {this.props.transaction.CreatedOn}
-          </td>
-        </tr>
+          </span>
+          </div>
       </React.Fragment>
     );
   }
