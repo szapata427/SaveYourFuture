@@ -99,8 +99,15 @@ class AddTransaction extends Component {
       this.submitTransactionToDataBase(transactionInfo, (response) => {
           console.log(response.result)
           if (response.result["Success"] == true) {
-              console.log(`transaction was added`)
-              this.props.addTransactionToCurrent(response.result)
+              console.log(`transaction was added to database `) 
+              let updateTransactionTable = {
+                  Amount: parseFloat(response.result.Amount),
+                  Type: response.result.TransactionType,
+                  Notes: response.result.Notes,
+                  CreatedOn: response.result.CreatedOn
+
+              }
+              this.props.addTransactionToCurrent(updateTransactionTable)
 
           }
       })
