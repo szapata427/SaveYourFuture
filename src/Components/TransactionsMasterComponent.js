@@ -30,7 +30,13 @@ class TransactionMasterComponent extends Component {
     return (
       <React.Fragment>
         <AddTransaction />
-        All Current Transactions
+        <br></br>
+        <div className="all-transactions-column-names-wrapper">
+            <span className="transations-column-names-span">Amount</span>
+            <span className="transations-column-names-span">Type</span>
+            <span className="transations-column-names-span">Notes</span>
+            <span className="transations-column-names-span">Date</span>
+        </div>
         <div className="all-transactions-main-div-container">
           <ShowCurrentTransactions />
         </div>

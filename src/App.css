@@ -238,6 +238,33 @@ select-options-tranactions[value="Withdrawl"]{
 
 /* transactions page all */
 
+.all-transactions-column-names-wrapper {
+  margin-left: 18%;
+  width: 80%;
+  background-color:white;
+  color: rgb(209, 220, 243);
+  font-size:1.5em;
+  border: 1px solid rgb(114, 142, 231);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  margin-bottom: .3%;
+  
+
+}
+
+.transations-column-names-span {
+  display: inline-block;
+  width: 18%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-right: 4%;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(41, 77, 241);
+  /* border-bottom: 1px solid black; */
+  border-right: 1px solid rgb(114, 142, 231);
+}
 
 
 .all-transactions-main-div-container{
@@ -251,6 +278,7 @@ font-weight: 700;
 margin-left: 18%;
 width: 80%;
 padding-left: .5%;
+padding-top: .5%;
 
 
 }
@@ -282,8 +310,6 @@ padding-bottom: 2%;
   margin-right: 4%;
 
 }
-
-
 
 .transactions-span-per-value {
   word-wrap:break-word;
