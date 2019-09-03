@@ -38,7 +38,7 @@ class App extends Component {
 
   componentDidMount = () => {
     // monitor changes for the user
-    let userid = null;
+    let userid = "";
     firebase.auth().onAuthStateChanged(user => {
       this.setState({
         isSignedIn: !!user,
@@ -66,6 +66,7 @@ class App extends Component {
                 if (result.Id) {
                   this.props.currentUser(result);
                   userid = result.Id;
+                  console.log(userid)
                   this.setState({
                     userDatabaseId: userid
                   });
@@ -128,7 +129,7 @@ class App extends Component {
           <div id="loading-sign-home-page-wrapper">
             <div className="loader">Loading</div>
           </div>
-        ) : this.state.isSignedIn ? (
+        ) :  this.state.userDatabaseId ? (
           <span>
             <LoginHomePageRoutes signedIn={this.state.isSignedIn} />
             <h1>{firebase.auth().currentUser.displayName}</h1>
@@ -151,7 +152,7 @@ class App extends Component {
               />
               <Route
                 path="/Transactions"
-                render={() => <TransactionMasterComponent />}
+                render={() => <TransactionMasterComponent userId={this.state.userDatabaseId}/>}
               />
             </Switch>
           </span>
@@ -170,7 +171,8 @@ class App extends Component {
               />
             </div>
           </React.Fragment>
-        )}
+        )
+        }
       </div>
     );
   }
@@ -182,6 +184,7 @@ const mapDispatchToProps = dispatch => {
     currentUser: theuser => {
       dispatch({ type: "CURRENT_USER", value: theuser });
     }
+    
   };
 };
 
