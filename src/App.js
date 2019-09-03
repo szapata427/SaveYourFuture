@@ -129,7 +129,7 @@ class App extends Component {
           <div id="loading-sign-home-page-wrapper">
             <div className="loader">Loading</div>
           </div>
-        ) :  this.state.userDatabaseId ? (
+        ) :  this.state.isSignedIn && this.state.userDatabaseId ? (
           <span>
             <LoginHomePageRoutes signedIn={this.state.isSignedIn} />
             <h1>{firebase.auth().currentUser.displayName}</h1>
