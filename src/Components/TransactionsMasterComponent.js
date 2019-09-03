@@ -12,19 +12,16 @@ export const url = "http://localhost:5000/";
 class TransactionMasterComponent extends Component {
 
 
-  componentWillReceiveProps(nextProps) {
-    console.log(`current props ${this.props} and nextprops ${nextProps}`);
-    if (this.props.user !== nextProps.user) {
-      console.log(`props are different ${nextProps.user}`);
-      this.props.fetchUsersTransactions(nextProps.user.user.Id);
-    }
-  }
-  componentWillMount() {
-    console.log(this.props)
-    //   console.log(`props are different ${nextProps.user}`);
-    //   this.props.fetchUsersTransactions(nextProps.user);
-    
-  }
+//   componentWillReceiveProps(nextProps) {
+//     console.log(`current props ${this.props} and nextprops ${nextProps}`);
+//     if (this.props.user !== nextProps.user) {
+//       console.log(`props are different ${nextProps.user}`);
+//       this.props.fetchUsersTransactions(nextProps.user.user.Id);
+//     }
+//   }
+
+
+
 
   render() {
     return (

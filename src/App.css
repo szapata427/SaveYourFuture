@@ -239,15 +239,16 @@ select-options-tranactions[value="Withdrawl"]{
 /* transactions page all */
 
 .all-transactions-column-names-wrapper {
-  margin-left: 18%;
+  margin-left: 18.3%;
   width: 80%;
   background-color:white;
   color: rgb(209, 220, 243);
   font-size:1.5em;
-  border: 1px solid rgb(114, 142, 231);
+  border: 2px solid rgb(114, 142, 231);
   border-radius: 10px;
   font-family: 'Nunito', sans-serif;
   margin-bottom: .3%;
+
   
 
 }
