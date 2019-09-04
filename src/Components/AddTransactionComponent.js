@@ -108,7 +108,10 @@ class AddTransaction extends Component {
 
               }
               this.props.addTransactionToCurrent(updateTransactionTable)
-
+              this.setState({
+                transactionNotes: "",
+                transactionAmount: ""
+              })
           }
       })
   }
@@ -165,6 +168,7 @@ class AddTransaction extends Component {
             <br></br>
             <label class="transaction-label">Notes</label>
             <input
+            value={this.state.transactionNotes}
               id="transaction-notes-input"
               type="text"
               min="0.01"

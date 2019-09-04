@@ -12,9 +12,6 @@ export const url = "http://localhost:5000/";
 class TransactionMasterComponent extends Component {
 
 
-  componentDidUpdate(nextProps) {
-    // console.log(nextProps)
-  }
 
   componentDidMount() {
       console.log(this.props)
