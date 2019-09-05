@@ -16,7 +16,7 @@ class TransactionMasterComponent extends Component {
 
   componentDidMount() {
       console.log(this.props)
-      let userId = this.props.user.user.Id
+      let userId = this.props.userId
     this.props.fetchUsersTransactions(userId);
   }
 

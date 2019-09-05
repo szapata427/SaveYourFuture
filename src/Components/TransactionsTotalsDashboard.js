@@ -12,6 +12,7 @@ class TransactionsTotalsDashboard extends Component {
 
 
 filteredTotalWithdrawlTranactions() {
+    console.log(this.props)
     let withdrawlSum = 0
     let depositSum = 0
     let differentSum;
