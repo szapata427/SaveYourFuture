@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import AddTransaction from "./AddTransactionComponent";
 import ShowCurrentTransactions from "./CurrentTransactionsComponent";
 import { fetchUsersTransactions } from "../Store/Actions/TransactionActions";
-import TransactionsAmountTotalWithdrawl from "./TransactionsAmountTotalWithdrawl";
+import TransactionsTotalsDashboard from "./TransactionsTotalsDashboard";
 
 export const url = "http://localhost:5000/";
 
@@ -25,7 +25,7 @@ class TransactionMasterComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        <TransactionsAmountTotalWithdrawl />
+        <TransactionsTotalsDashboard />
         <AddTransaction />
         <br></br>
         <div className="all-transactions-column-names-wrapper">

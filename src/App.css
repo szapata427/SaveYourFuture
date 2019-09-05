@@ -159,6 +159,24 @@ li a:hover:not(.active) {
 
 /* transactions componenets css */
 
+
+
+/* transactions dashboard  */
+
+
+.total-amount-transactions-dashboard-wrapper {
+margin-top: 4%;
+width: 90%;
+font-size: 1.5em;
+
+}
+
+.total-amount-dashboard {
+  display: inline-block;
+  margin-right: 2%;
+}
+
+
 #showcurrenttransactions-main-wrapper-div {
 
 }
@@ -166,7 +184,7 @@ li a:hover:not(.active) {
 #addtransaction-form-main-wrapper-div {
   /* display: inline-block; */
   width: 60%;
-  margin-top: 8%;
+  margin-top: 5%;
   
 
 
@@ -331,3 +349,4 @@ padding-bottom: 2%;
 
 
 }
+

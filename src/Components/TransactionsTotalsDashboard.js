@@ -6,24 +6,39 @@ import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
 
 
-class TransactionsAmountTotalWithdrawl extends Component {
+class TransactionsTotalsDashboard extends Component {
     
 
 
 
 filteredTotalWithdrawlTranactions() {
-    let sum = 0
+    let withdrawlSum = 0
+    let depositSum = 0
+    let differentSum;
     let currentTansactionsArray = this.props.currentTransactions.currentTransactions
     currentTansactionsArray.forEach(trans => {
         if (trans.Type == 'Withdrawl') {
-            sum += trans.Amount
+            withdrawlSum += trans.Amount
             
+        }
+        else if (trans.Type == 'Deposit') {
+            depositSum += trans.Amount
         }
         
     })
+
+    differentSum = depositSum - withdrawlSum
     return (
-        <div>
-            {sum}
+        <div className="total-amount-transactions-dashboard-wrapper">
+            <div className="total-amount-dashboard">
+            Total Withdrawl Sum ${withdrawlSum}
+            </div>
+            <div className="total-amount-dashboard"> 
+                Total Deposit Sum ${depositSum}
+            </div>
+            <div className="total-amount-dashboard"> 
+                {differentSum >= 0 ? "Profit" : "Loss"} ${differentSum}
+            </div>
         </div>
     )
 
@@ -45,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(TransactionsAmountTotalWithdrawl)
+export default connect(mapStateToProps, null)(TransactionsTotalsDashboard)
