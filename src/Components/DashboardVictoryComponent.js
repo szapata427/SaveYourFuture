@@ -40,7 +40,7 @@ allTransactionsDashboardVictory() {
         return (
             <React.Fragment>
                 <div className="victory-pie-main-div-wrapper">
-               {this.props.currentTransactions ? <VictoryPie data={this.allTransactionsDashboardVictory()} height={150}  colorScale={["red", "green" ]}     style={{
+               {this.props.currentTransactions ? <VictoryPie data={this.allTransactionsDashboardVictory()} height={150}  colorScale={["red", "hsl(120, 73%, 75%)" ]}     style={{
                    labels: {
                        fontSize: 8, fill: "blue"
                     }

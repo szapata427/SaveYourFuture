@@ -221,7 +221,7 @@ margin-top: -8%;
 }
 
 select-options-tranactions[value="Withdrawl"]{
-  color: lightgreen;
+  color: hsl(120, 73%, 75%);
 }
 
 .select-options-tranactions {
