@@ -20,14 +20,12 @@ filteredTotalWithdrawlTranactions() {
     let differentSum;
     let currentTansactionsArray = this.props.currentTransactions.currentTransactions
     currentTansactionsArray.forEach(trans => {
-        console.log(trans)
+
         if (trans.Amount !== "number") {
             trans["Amount"] = parseFloat(trans.Amount)
         }
-        
-        if (trans.Type == 'Withdrawl') {
 
-            console.log(typeof trans.Amount)
+        if (trans.Type == 'Withdrawl') {
             withdrawlSum += trans.Amount
             
         }
@@ -51,15 +49,15 @@ filteredTotalWithdrawlTranactions() {
     return (
         <React.Fragment>
 
-        <div> Dashboard</div>
+        <div className="total-accounting-dashboard-div"> Dashboard</div>
         <div className="total-amount-transactions-dashboard-wrapper">
-            <div className="total-amount-dashboard"> 
+            <div className="total-amount-dashboard" transtype="deposit"> 
                 Deposit ${depositSum}
             </div>
-            <div className="total-amount-dashboard">
+            <div className="total-amount-dashboard" transtype="withdrawl">
              Withdrawl ${withdrawlSum}
             </div>
-            <div className="total-amount-dashboard"> 
+            <div className="total-amount-dashboard" transtype={parseFloat(differentSum) >= 0 ? "deposit" : "withdrawl"}> 
                 {parseFloat(differentSum) >= 0 ? "Profit" : "Loss"} ${differentSum}
             </div>
         </div>

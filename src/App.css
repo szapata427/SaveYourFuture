@@ -166,15 +166,34 @@ li a:hover:not(.active) {
 
 .total-amount-transactions-dashboard-wrapper {
 margin-top: 4%;
-width: 100%;
+width: 75%;
 font-size: 1.5em;
+background-color: lightcyan;
+padding-top: 2%;
+padding-bottom: 2%;
+margin-left: 18.5%;
+border: 2px solid white;
+border-radius: 10px;
 
 }
 
 .total-amount-dashboard {
   display: inline-block;
-  margin-right: 1%;
+  margin-right: 4%;
 }
+
+.total-accounting-dashboard-div {
+color: blue;
+}
+
+[transtype="deposit"] {
+  color: rgb(13, 173, 13);
+}
+[transtype="withdrawl"] {
+  color: red;
+}
+
+
 
 
 #showcurrenttransactions-main-wrapper-div {
@@ -210,10 +229,6 @@ select-options-tranactions[value="Withdrawl"]{
   font-weight: 600;
   margin-bottom: 3%;
 }
-
-
-
-
 
 
 #transaction-notes-input {
