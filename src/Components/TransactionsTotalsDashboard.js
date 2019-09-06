@@ -43,9 +43,6 @@ filteredTotalWithdrawlTranactions() {
     withdrawlSum = withdrawlSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     depositSum = depositSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     differentSum = differentSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    console.log(withdrawlSum)
-    console.log(depositSum)
-    console.log(differentSum)
    
     return (
         <React.Fragment>

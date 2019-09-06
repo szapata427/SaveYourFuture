@@ -7,6 +7,7 @@ import HomePageAccountMaster from "./HomePageAccountMasterComponent";
 import { NavLink } from "react-router-dom";
 
 class LoginHomePageRoutes extends Component {
+  
   userLoggedOut = () => {
     firebase.auth().signOut();
     this.props.deleteUser();

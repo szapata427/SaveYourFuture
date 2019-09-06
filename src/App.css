@@ -198,11 +198,11 @@ width: 80%;
 margin-left: 18%;
 height: 20%;
 margin-bottom: -4%;
-margin-top: -8%;
+margin-top: -3%;
 }
 
 [aria-labelledby="victory-container-1-title victory-container-1-desc"] {
-  /* height: 300px !important; */
+  height: 500px !important;
 }
 
 

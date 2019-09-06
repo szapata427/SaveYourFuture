@@ -50,6 +50,8 @@ class App extends Component {
         let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
         console.log(emailsearchurl);
 
+        this.props.history.push('/transactions')
+        
         fetch(emailsearchurl)
           .then(response => response.json())
           .then(data => {
@@ -135,6 +137,10 @@ class App extends Component {
             <h1>{firebase.auth().currentUser.displayName}</h1>
             <Switch>
               <Route
+                path="/Transactions"
+                render={() => <TransactionMasterComponent userId={this.state.userDatabaseId}/>}
+              />
+              <Route
                 path="/AccountHome"
                 render={() => <HomePageAccountMaster user={this.state.user} />}
               />
@@ -149,10 +155,6 @@ class App extends Component {
               <Route
                 path="/PersonInformation"
                 render={() => <SavingsHomePageMaster user={this.state.user} />}
-              />
-              <Route
-                path="/Transactions"
-                render={() => <TransactionMasterComponent userId={this.state.userDatabaseId}/>}
               />
             </Switch>
           </span>
