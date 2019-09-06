@@ -193,12 +193,18 @@ color: blue;
   color: red;
 }
 
-
-
-
-#showcurrenttransactions-main-wrapper-div {
-
+.victory-pie-main-div-wrapper {
+width: 80%;
+margin-left: 18%;
+height: 20%;
+margin-bottom: -4%;
+margin-top: -8%;
 }
+
+[aria-labelledby="victory-container-1-title victory-container-1-desc"] {
+  /* height: 300px !important; */
+}
+
 
 #addtransaction-form-main-wrapper-div {
   /* display: inline-block; */

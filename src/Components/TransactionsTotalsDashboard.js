@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
 import {twoDecimalsNumber} from './HelperFunctions'
 import {checkIfAmountHasTwoDecimals} from './HelperFunctions'
+import DashboardVictoryComponent from './DashboardVictoryComponent'
 
 
 class TransactionsTotalsDashboard extends Component {
@@ -70,6 +71,7 @@ filteredTotalWithdrawlTranactions() {
         return (
             <React.Fragment>
                 {this.props.currentTransactions ? this.filteredTotalWithdrawlTranactions() : null}
+                <DashboardVictoryComponent />
             </React.Fragment>
         )
     }
