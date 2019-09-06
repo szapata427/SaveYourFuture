@@ -17,3 +17,16 @@ return false
       }
     }
   }
+
+
+export const twoDecimalsNumber = (number) => {
+  console.log(number)
+  let newNumber;
+  if (typeof number == "string") {
+    number = parseFloat(number)
+  }
+
+  newNumber = number.toFixed(2)
+  console.log(newNumber)
+  return newNumber
+}

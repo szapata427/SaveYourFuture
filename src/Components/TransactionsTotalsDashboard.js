@@ -4,6 +4,8 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
+import {twoDecimalsNumber} from './HelperFunctions'
+import {checkIfAmountHasTwoDecimals} from './HelperFunctions'
 
 
 class TransactionsTotalsDashboard extends Component {
@@ -27,20 +29,33 @@ filteredTotalWithdrawlTranactions() {
         }
         
     })
+    withdrawlSum = checkIfAmountHasTwoDecimals(withdrawlSum) ? withdrawlSum : twoDecimalsNumber(withdrawlSum)
+    depositSum = checkIfAmountHasTwoDecimals(depositSum) ? depositSum : twoDecimalsNumber(depositSum)
+    differentSum = checkIfAmountHasTwoDecimals(depositSum - withdrawlSum) ? depositSum - withdrawlSum : twoDecimalsNumber(depositSum - withdrawlSum)
 
-    differentSum = depositSum - withdrawlSum
+    
+    withdrawlSum = withdrawlSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    depositSum = depositSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    differentSum = differentSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+   
+
     return (
+        <React.Fragment>
+
+        <div> Dashboard</div>
         <div className="total-amount-transactions-dashboard-wrapper">
-            <div className="total-amount-dashboard">
-            Total Withdrawl Sum ${withdrawlSum}
-            </div>
             <div className="total-amount-dashboard"> 
-                Total Deposit Sum ${depositSum}
+                Deposit ${depositSum}
+            </div>
+            <div className="total-amount-dashboard">
+             Withdrawl ${withdrawlSum}
             </div>
             <div className="total-amount-dashboard"> 
                 {differentSum >= 0 ? "Profit" : "Loss"} ${differentSum}
             </div>
         </div>
+        </React.Fragment>
     )
 
 }

@@ -11,11 +11,10 @@ class ShowCurrentTransactions extends Component {
 
 
     mapFetchTransactions = () => {
-        console.log('hitmap function after adding transaction')
-        console.log(this.props)
         let transactionsArrayFromProps = this.props.currentTransactions
         console.log(transactionsArrayFromProps)
         return transactionsArrayFromProps.map(trans => {
+            trans["Amount"] = trans.Amount.toLocaleString()
 
             return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
 

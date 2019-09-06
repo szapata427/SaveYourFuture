@@ -166,14 +166,14 @@ li a:hover:not(.active) {
 
 .total-amount-transactions-dashboard-wrapper {
 margin-top: 4%;
-width: 90%;
+width: 100%;
 font-size: 1.5em;
 
 }
 
 .total-amount-dashboard {
   display: inline-block;
-  margin-right: 2%;
+  margin-right: 1%;
 }
 
 
@@ -336,7 +336,7 @@ padding-bottom: 2%;
 }
 
 [transtype="Deposit"] {
-  background-color: rgb(72, 219, 72);
+  background-color: rgb(92, 175, 92);
   color: white;
   font-weight: 700;
   font-size: 1.1em;
