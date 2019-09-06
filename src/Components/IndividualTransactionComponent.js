@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
 import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
+import {twoDecimalsNumber} from './HelperFunctions'
 
 class IndividualTransactionComponent extends Component {
     render() {
@@ -14,8 +15,8 @@ class IndividualTransactionComponent extends Component {
           <span className="transactions-span-per-value" >
             $
             {checkIfAmountHasTwoDecimals(this.props.transaction.Amount)
-              ? this.props.transaction.Amount
-              : this.props.transaction.Amount + ".00"}
+              ? this.props.transaction.Amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : twoDecimalsNumber(this.props.transaction.Amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }
           </span>
           <span className="transactions-span-per-value" >
             {this.props.transaction.Type}

@@ -14,7 +14,10 @@ class ShowCurrentTransactions extends Component {
         let transactionsArrayFromProps = this.props.currentTransactions
         console.log(transactionsArrayFromProps)
         return transactionsArrayFromProps.map(trans => {
-            trans["Amount"] = trans.Amount.toLocaleString()
+            if (trans.Amount !== "number") {
+                trans["Amount"] = parseFloat(trans.Amount)
+            }
+            
 
             return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
 
