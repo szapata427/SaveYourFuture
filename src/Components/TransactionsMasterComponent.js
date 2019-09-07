@@ -35,7 +35,7 @@ this.setState({
         <AddTransaction />
         <div className="select-past-days-trans-div-wrapper"> 
           <span className="past-days-select-span-transactions">Past Days</span> 
-        <select onChange={this.lastDaysSelected}>
+        <select className="select-past-days-transactions" onChange={this.lastDaysSelected}>
           <option value="1">1</option>
           <option value="3">3</option>
           <option value="7">7</option>

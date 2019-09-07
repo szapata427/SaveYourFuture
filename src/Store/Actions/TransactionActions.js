@@ -28,3 +28,9 @@ export const addTransactionToCurrent = (transInfo) => {
         type: "ADD_NEW_TRANSACTION", value: transInfo
     })
 }
+
+export const filteredTransactions = (allFilteredtransactions) => {
+  return ({
+    type: "FILTERED_TRANSACTIONS_COMPLETE", value: allFilteredtransactions
+  })
+}

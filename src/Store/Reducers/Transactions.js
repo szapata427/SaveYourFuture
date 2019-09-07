@@ -23,7 +23,12 @@ const fetchUsersTransactions = (state = initState, action) => {
             let newStateArray = [newTrans, ...state.currentTransactions]
             console.log(action.value)
             return {currentTransactions: newStateArray}
+
+            case "FILTERED_TRANSACTIONS_COMPLETE":
+                let allFilteredTrans = action.value
+                return {currentTransactions: allFilteredTrans}
         }
+
         
     return state
 }

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
 import IndividualTransactionComponent from './IndividualTransactionComponent'
 import { fetchUsersTransactions } from "../Store/Actions/TransactionActions";
+import { filteredTransactions } from "../Store/Actions/TransactionActions";
 
 
 
@@ -13,43 +14,52 @@ class ShowCurrentTransactions extends Component {
 
 
     mapFetchTransactions = () => {
+        console.log("map fetch transactions is hit")
         let lastDays = this.props.lastDays
         let transactionsArrayFromProps = this.props.currentTransactions
         console.log(transactionsArrayFromProps)
         let date = new Date();
         let lastDaysDate = date.setDate(date.getDate() - lastDays);
-        return transactionsArrayFromProps.map(trans => {
-            
+        let filteredDateTransactions =  transactionsArrayFromProps.filter(trans => {
+            console.log(lastDays)
             if (lastDays !== null) {
-                
                 if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
                     
                     if (trans.Amount !== "number") {
                         trans["Amount"] = parseFloat(trans.Amount)
                     }
                     
-                    
-                    return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
+                    return trans
 
 
                 }
                 
             }
             else {
+                console.log(lastDays)
                 if (trans.Amount !== "number") {
                     trans["Amount"] = parseFloat(trans.Amount)
                 }
                 
-                
-                return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
+                return trans
 
 
 
             }
         })
+
+
+        console.log(filteredDateTransactions)
+        return filteredDateTransactions.map(trans =>{
+            
+             return <IndividualTransactionComponent key={trans.Id} transaction={trans}/>
+        })
+
         
     }
 
+
+    
 
     render() {
 
@@ -57,6 +67,7 @@ class ShowCurrentTransactions extends Component {
             <React.Fragment>
                 
                 {this.props.currentTransactions ? this.mapFetchTransactions() : null}
+                
             </React.Fragment>
         )
     }
@@ -77,9 +88,11 @@ const mapStateToProps = (state) => {
     const mapDispatchToProps = dispatch => {
         console.log(`hitting dispatch for all transactions`);
         return {
-          fetchUsersTransactions: (userInfo, days) =>
-            dispatch(fetchUsersTransactions(userInfo, days))
-        };
+          filteredTransactions: (filteredTrans) =>
+          dispatch(filteredTransactions(filteredTrans))
+          
+        }
+
       };
       
 

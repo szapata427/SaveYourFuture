@@ -278,11 +278,20 @@ select-options-tranactions[value="Withdrawl"]{
 .select-past-days-trans-div-wrapper {
   width: 80%;
   margin-left: 15%;
+  font-size: 2em;
 }
 
 .past-days-select-span-transactions {
   margin-right: 1%;
   text-align: center;
+}
+
+.select-past-days-transactions {
+  font-size: .5em;
+  background-color:DodgerBlue;
+  width: 7%;
+  color: white;
+
 }
 
 /* transactions page all */
@@ -380,4 +389,7 @@ padding-bottom: 2%;
 
 
 }
+
+/* filter days for transactions */
+
 
