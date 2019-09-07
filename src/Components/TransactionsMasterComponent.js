@@ -12,7 +12,9 @@ export const url = "http://localhost:5000/";
 
 class TransactionMasterComponent extends Component {
 
-
+state = {
+  dateFilterLastDays: null,
+}
 
   componentDidMount() {
       console.log(this.props)
@@ -20,13 +22,30 @@ class TransactionMasterComponent extends Component {
     this.props.fetchUsersTransactions(userId);
   }
 
-
+lastDaysSelected = (e) => {
+this.setState({
+  dateFilterLastDays: e.target.value
+})
+}
 
   render() {
     return (
       <React.Fragment>
         <TransactionsTotalsDashboard />
         <AddTransaction />
+        <div className="select-past-days-trans-div-wrapper"> 
+          <span className="past-days-select-span-transactions">Past Days</span> 
+        <select onChange={this.lastDaysSelected}>
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="7">7</option>
+          <option value="14">14</option>
+          <option value="30">30</option>
+          <option value="60">60</option>
+          <option value="null">All</option>
+        </select>
+
+        </div>
         <br></br>
         <div className="all-transactions-column-names-wrapper">
             <span className="transations-column-names-span">Amount</span>
@@ -35,7 +54,7 @@ class TransactionMasterComponent extends Component {
             <span className="transations-column-names-span">Date</span>
         </div>
         <div className="all-transactions-main-div-container">
-          <ShowCurrentTransactions />
+          <ShowCurrentTransactions lastDays={this.state.dateFilterLastDays} />
         </div>
       </React.Fragment>
     );

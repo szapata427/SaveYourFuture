@@ -275,6 +275,16 @@ select-options-tranactions[value="Withdrawl"]{
   
 }
 
+.select-past-days-trans-div-wrapper {
+  width: 80%;
+  margin-left: 15%;
+}
+
+.past-days-select-span-transactions {
+  margin-right: 1%;
+  text-align: center;
+}
+
 /* transactions page all */
 
 .all-transactions-column-names-wrapper {

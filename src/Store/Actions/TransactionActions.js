@@ -3,11 +3,17 @@
 // export const FETCH_TRANSACTIONS_FAILURE = "FETCH_TRANSACTIONS_FAILURE";
 import {url} from '../../Components/TransactionsMasterComponent'
 
-export const fetchUsersTransactions = (userId) => {
+export const fetchUsersTransactions = (userId, days=null) => {
+  console.log(userId, days)
+  let urlFetch = `${url}saveyourfuture/api/v1.0/UsersTransactions?UserId=${userId}`
+
+  if (days !== null) {
+    urlFetch = `${url}saveyourfuture/api/v1.0/UsersTransactions?UserId=${userId}&LastDays=${days}`
+  }
     console.log(`user information being sent to transactions action to fetch ${userId}`)
   return dispatch => {
     return fetch(
-      `${url}saveyourfuture/api/v1.0/UsersTransactions?UserId=${userId}`
+      urlFetch
     )
       .then(response => response.json())
       .then(data => {
