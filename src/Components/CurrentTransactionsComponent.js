@@ -15,14 +15,20 @@ class ShowCurrentTransactions extends Component {
 
     mapFetchTransactions = () => {
         console.log("map fetch transactions is hit")
-        let lastDays = this.props.lastDays
+        let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
         let transactionsArrayFromProps = this.props.currentTransactions
         console.log(transactionsArrayFromProps)
-        let date = new Date();
-        let lastDaysDate = date.setDate(date.getDate() - lastDays);
-        let filteredDateTransactions =  transactionsArrayFromProps.filter(trans => {
-            console.log(lastDays)
-            if (lastDays !== null) {
+        let date;
+        let lastDaysDate
+        let filteredDateTransactions 
+        console.log(lastDays)
+
+        if (lastDays != null) {
+            date = new Date();
+            lastDaysDate = date.setDate(date.getDate() - lastDays);
+            filteredDateTransactions =  transactionsArrayFromProps.filter(trans => {
+
+
                 if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
                     
                     if (trans.Amount !== "number") {
@@ -33,10 +39,15 @@ class ShowCurrentTransactions extends Component {
 
 
                 }
+            })
+        }
+            
+        
                 
-            }
+            
             else {
-                console.log(lastDays)
+                console.log('hit')
+                filteredDateTransactions =  transactionsArrayFromProps.filter(trans => {
                 if (trans.Amount !== "number") {
                     trans["Amount"] = parseFloat(trans.Amount)
                 }
@@ -44,9 +55,9 @@ class ShowCurrentTransactions extends Component {
                 return trans
 
 
+            })
 
             }
-        })
 
 
         console.log(filteredDateTransactions)
