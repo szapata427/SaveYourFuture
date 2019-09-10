@@ -31,7 +31,7 @@ this.setState({
   render() {
     return (
       <React.Fragment>
-        <TransactionsTotalsDashboard />
+        <TransactionsTotalsDashboard lastDays={this.state.dateFilterLastDays} />
         <AddTransaction />
         <div className="select-past-days-trans-div-wrapper"> 
           <span className="past-days-select-span-transactions">Past Days</span> 

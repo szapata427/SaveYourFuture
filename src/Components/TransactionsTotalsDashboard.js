@@ -20,12 +20,40 @@ filteredTotalWithdrawlTranactions() {
     let depositSum = 0
     let differentSum;
     let currentTansactionsArray = this.props.currentTransactions.currentTransactions
-    currentTansactionsArray.forEach(trans => {
+    let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
+    let date;
+    let lastDaysDate
 
+
+
+
+    currentTansactionsArray.filter(trans => {
+        if (lastDays != null) {
+            date = new Date();
+            lastDaysDate = date.setDate(date.getDate() - lastDays);
+            
+            if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
+
+            if (trans.Amount !== "number") {
+                trans["Amount"] = parseFloat(trans.Amount)
+            }
+            
+            if (trans.Type == 'Withdrawl') {
+                withdrawlSum += trans.Amount
+                
+            }
+            else if (trans.Type == 'Deposit') {
+                depositSum += trans.Amount
+            }
+            
+        }
+    }
+
+    else {
         if (trans.Amount !== "number") {
             trans["Amount"] = parseFloat(trans.Amount)
         }
-
+        
         if (trans.Type == 'Withdrawl') {
             withdrawlSum += trans.Amount
             
@@ -34,6 +62,9 @@ filteredTotalWithdrawlTranactions() {
             depositSum += trans.Amount
         }
         
+    }
+
+
     })
     withdrawlSum = checkIfAmountHasTwoDecimals(withdrawlSum) ? withdrawlSum : twoDecimalsNumber(withdrawlSum)
     depositSum = checkIfAmountHasTwoDecimals(depositSum) ? depositSum : twoDecimalsNumber(depositSum)
