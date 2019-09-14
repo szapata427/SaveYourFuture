@@ -11,9 +11,6 @@ import DashboardVictoryComponent from './DashboardVictoryComponent'
 
 class TransactionsTotalsDashboard extends Component {
     
-
-
-
 filteredTotalWithdrawlTranactions() {
     console.log(this.props)
     let withdrawlSum = 0
@@ -23,9 +20,6 @@ filteredTotalWithdrawlTranactions() {
     let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
     let date;
     let lastDaysDate
-
-
-
 
     currentTansactionsArray.filter(trans => {
         if (lastDays != null) {

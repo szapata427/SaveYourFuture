@@ -11,18 +11,40 @@ class DashboardVictoryComponent extends Component {
 
 
 allTransactionsDashboardVictory() {
-    console.log(this.props)
-
     let withdrawlSum = 0
     let depositSum = 0
     let differentSum;
+    let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
+    let date;
+    let lastDaysDate
     let currentTansactionsArray = this.props.currentTransactions.currentTransactions
     currentTansactionsArray.forEach(trans => {
+        if (lastDays != null) {
+            date = new Date();
+            lastDaysDate = date.setDate(date.getDate() - lastDays);
+            
+            if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
 
+            if (trans.Amount !== "number") {
+                trans["Amount"] = parseFloat(trans.Amount)
+            }
+            
+            if (trans.Type == 'Withdrawl') {
+                withdrawlSum += trans.Amount
+                
+            }
+            else if (trans.Type == 'Deposit') {
+                depositSum += trans.Amount
+            }
+            
+        }
+    }
+
+    else {
         if (trans.Amount !== "number") {
             trans["Amount"] = parseFloat(trans.Amount)
         }
-
+        
         if (trans.Type == 'Withdrawl') {
             withdrawlSum += trans.Amount
             
@@ -31,6 +53,7 @@ allTransactionsDashboardVictory() {
             depositSum += trans.Amount
         }
         
+    }
     })
     let profitOrLoss = differentSum >= 0 ? "Profit" : "Loss"
     const dataToGraph = [{x: "Withdrawl", y: withdrawlSum},{x: "Deposit", y: depositSum}]
