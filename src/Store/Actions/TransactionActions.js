@@ -34,3 +34,8 @@ export const filteredTransactions = (allFilteredtransactions) => {
     type: "FILTERED_TRANSACTIONS_COMPLETE", value: allFilteredtransactions
   })
 }
+
+export const resetTransactions = () => {
+  return ({type: 'RESET_TRANSACTIONS'
+})
+  }

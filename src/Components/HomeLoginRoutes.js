@@ -5,12 +5,15 @@ import { connect } from "react-redux";
 import { deleteUser } from "../Store/Actions/UserAction";
 import HomePageAccountMaster from "./HomePageAccountMasterComponent";
 import { NavLink } from "react-router-dom";
+import {resetTransactions} from '../Store/Actions/TransactionActions'
 
 class LoginHomePageRoutes extends Component {
   
   userLoggedOut = () => {
+    console.log(this.props)
     firebase.auth().signOut();
     this.props.deleteUser();
+    this.props.resetTransactions()
   };
 
   render() {
@@ -59,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteUser: () => dispatch(deleteUser())
+    deleteUser: () => dispatch(deleteUser()),
+    resetTransactions: () => dispatch(resetTransactions())
   };
 };
 
