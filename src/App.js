@@ -94,6 +94,11 @@ class App extends Component {
             console.log(error);
           });
       }
+      else {
+        this.setState({
+          userDatabaseId: null
+        })
+      }
     });
   };
 
