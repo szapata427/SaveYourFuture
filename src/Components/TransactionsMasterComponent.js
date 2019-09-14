@@ -17,7 +17,6 @@ state = {
 }
 
   componentDidMount() {
-      console.log(this.props)
       let userId = this.props.userId
     this.props.fetchUsersTransactions(userId);
   }

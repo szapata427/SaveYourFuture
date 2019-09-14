@@ -48,18 +48,14 @@ class App extends Component {
       if (this.state.isSignedIn == true) {
         let userEmail = user.email;
         let emailsearchurl = `http://localhost:5000/saveyourfuture/api/v1.0/SearchUserEmail?email=${userEmail}`;
-        console.log(emailsearchurl);
 
         this.props.history.push('/transactions')
         
         fetch(emailsearchurl)
           .then(response => response.json())
           .then(data => {
-            console.log(data.result);
-
             if (data.result == null) {
               
-              console.log(data);
               console.log(
                 "user is signed in but user not saved in database, need to save"
               );
@@ -81,7 +77,6 @@ class App extends Component {
               console.log("user is signed in and in database");
               this.props.currentUser(data.result);
               userid = data.result.Id;
-              console.log(userid);
               this.setState({
                 userDatabaseId: userid
               });

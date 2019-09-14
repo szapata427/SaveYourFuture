@@ -7,17 +7,17 @@ import {VictoryPie} from 'victory'
 
 
 
-class DashboardVictoryComponent extends Component {
+const DashboardVictoryComponent = (props) => {
 
 
-allTransactionsDashboardVictory() {
+const allTransactionsDashboardVictory= () => {
     let withdrawlSum = 0
     let depositSum = 0
     let differentSum;
-    let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
+    let lastDays = props.lastDays == "null" ? null : props.lastDays;
     let date;
     let lastDaysDate
-    let currentTansactionsArray = this.props.currentTransactions.currentTransactions
+    let currentTansactionsArray = props.currentTransactions.currentTransactions
     currentTansactionsArray.forEach(trans => {
         if (lastDays != null) {
             date = new Date();
@@ -59,11 +59,11 @@ allTransactionsDashboardVictory() {
     const dataToGraph = [{x: "Withdrawl", y: withdrawlSum},{x: "Deposit", y: depositSum}]
     return dataToGraph
 }
-    render() {
+
         return (
             <React.Fragment>
                 <div className="victory-pie-main-div-wrapper">
-               {this.props.currentTransactions ? <VictoryPie data={this.allTransactionsDashboardVictory()} height={150}  colorScale={["red", "hsl(120, 73%, 75%)" ]}     style={{
+               {props.currentTransactions ? <VictoryPie data={allTransactionsDashboardVictory()} height={150}  colorScale={["red", "hsl(120, 73%, 75%)" ]}     style={{
                    labels: {
                        fontSize: 6, fill: "blue"
                     }
@@ -71,7 +71,6 @@ allTransactionsDashboardVictory() {
                 </div>
             </React.Fragment>
         )
-    }
 }
 
 

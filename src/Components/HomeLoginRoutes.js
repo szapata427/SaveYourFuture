@@ -13,7 +13,6 @@ class LoginHomePageRoutes extends Component {
     console.log(this.props)
     firebase.auth().signOut();
     this.props.deleteUser();
-    this.props.resetTransactions()
   };
 
   render() {

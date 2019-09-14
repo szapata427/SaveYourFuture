@@ -1,6 +1,3 @@
-// export const FETCH_TRANSACTIONS_BEGIN = "FETCH_TRANSACTIONS_BEGIN";
-// export const FETCH_TRANSACTIONS_SUCCESS = "FETCH_TRANSACTIONS_SUCCESS";
-// export const FETCH_TRANSACTIONS_FAILURE = "FETCH_TRANSACTIONS_FAILURE";
 import {url} from '../../Components/TransactionsMasterComponent'
 
 export const fetchUsersTransactions = (userId, days=null) => {
