@@ -10,6 +10,7 @@ import { ReactRouter, Switch, Route, withRouter } from "react-router-dom";
 import HomePageAccountMaster from "./Components/HomePageAccountMasterComponent";
 import SavingsHomePageMaster from "./Components/SavingsHomePageMaster";
 import TransactionMasterComponent from "./Components/TransactionsMasterComponent";
+import GoalsMasterComponent from "./Components/GoalsMasterComponent";
 
 firebase.initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
@@ -142,19 +143,19 @@ class App extends Component {
               />
               <Route
                 path="/AccountHome"
-                render={() => <HomePageAccountMaster user={this.state.user} />}
+                render={() => <HomePageAccountMaster user={this.state.userDatabaseId} />}
               />
               <Route
                 path="/Goals"
-                render={() => <SavingsHomePageMaster user={this.state.user} />}
+                render={() => <GoalsMasterComponent user={this.state.userDatabaseId} />}
               />
               <Route
                 path="/Savings"
-                render={() => <SavingsHomePageMaster user={this.state.user} />}
+                render={() => <SavingsHomePageMaster user={this.state.userDatabaseId} />}
               />
               <Route
                 path="/PersonInformation"
-                render={() => <SavingsHomePageMaster user={this.state.user} />}
+                render={() => <SavingsHomePageMaster user={this.state.userDatabaseId} />}
               />
             </Switch>
           </span>
