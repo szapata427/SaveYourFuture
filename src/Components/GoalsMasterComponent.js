@@ -12,7 +12,7 @@ const GoalsMasterComponent = (props) => {
         Amount:amount,
         Name: name,
         EndDate: endDate,
-        Notes: notes
+        Notes: notes,
        }
         fetch(`${url}saveyourfuture/api/v1.0/AddGoal`, {
             method: "Post",
