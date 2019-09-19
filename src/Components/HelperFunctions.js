@@ -29,3 +29,51 @@ export const twoDecimalsNumber = (number) => {
 
   return newNumber
 }
+
+export const totalAmountPerTransactionType = (transactionsArray, lastDays) => {
+  let withdrawlSum = 0
+  let depositSum = 0
+  let date;
+  let lastDaysDate
+
+  transactionsArray.forEach(trans => {
+    if (lastDays != null) {
+        date = new Date();
+        lastDaysDate = date.setDate(date.getDate() - lastDays);
+        
+        if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
+
+        if (trans.Amount !== "number") {
+            trans["Amount"] = parseFloat(trans.Amount)
+        }
+        
+        if (trans.Type == 'Withdrawl') {
+            withdrawlSum += trans.Amount
+            
+        }
+        else if (trans.Type == 'Deposit') {
+            depositSum += trans.Amount
+        }
+        
+    }
+}
+
+else {
+    if (trans.Amount !== "number") {
+        trans["Amount"] = parseFloat(trans.Amount)
+    }
+    
+    if (trans.Type == 'Withdrawl') {
+        withdrawlSum += trans.Amount
+        
+    }
+    else if (trans.Type == 'Deposit') {
+        depositSum += trans.Amount
+    }
+    
+}
+})
+
+return {WithdrawlSum: withdrawlSum, DepositSum: depositSum}
+
+}

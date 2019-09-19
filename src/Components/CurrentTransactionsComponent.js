@@ -42,9 +42,6 @@ class ShowCurrentTransactions extends Component {
             })
         }
             
-        
-                
-            
             else {
                 console.log('hit')
                 filteredDateTransactions =  transactionsArrayFromProps.filter(trans => {
@@ -68,9 +65,6 @@ class ShowCurrentTransactions extends Component {
 
         
     }
-
-
-    
 
     render() {
 
