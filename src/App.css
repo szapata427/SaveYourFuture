@@ -392,4 +392,54 @@ padding-bottom: 2%;
 
 /* filter days for transactions */
 
+/* goals css */
 
+.add-goal-main-div-wrapper {
+  height: 10%;
+}
+
+.add-goal-form {
+  width: 93%;
+}
+.goal-label {
+  display: inline-block; 
+  width: 10%; text-align: right; 
+  margin-right: 1%;
+  padding-top: .9%;
+  font-size: 1.5em;
+  font-family: 'Chivo', sans-serif;
+  color: rgb(40, 111, 218);
+
+}
+#goal-label-deadline-date{
+  margin-bottom: .7% !important;
+  margin-top: .7% !important;
+}
+
+.add-goal-input {
+  width: 20%;
+  padding-bottom: 1.4%;
+  border: 1px solid grey;
+  border-radius: 2%;
+  
+}
+
+.submit-goal-button {
+padding: 1% 2% 1% 2%;
+margin-top: 2%;
+background-color: lightgreen;
+border: .5px solid lightgreen;
+border-radius: 3%;
+font-size: .8em;
+color: white;
+font-weight: 800;
+font-family: 'Chivo', sans-serif;
+
+
+}
+
+.CalendarDay__selected_span {
+  background: #82e0aa; 
+  color: white;
+  border: 1px solid lightcyan;
+}

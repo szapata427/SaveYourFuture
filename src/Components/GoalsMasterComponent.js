@@ -27,7 +27,7 @@ const GoalsMasterComponent = (props) => {
     }
     return (
         <div>
-            Goals
+            <div>Your Goals!</div>
             <AddGoal submitGoal={submitGoal}/>
         </div>
     )
