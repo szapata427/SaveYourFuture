@@ -385,7 +385,7 @@ padding-bottom: 2%;
   background-color: rgb(241, 148, 148);
   font-weight: 700;
   color: white;
-  font-size: 1.1em;
+  font-size: .9em;
 
 
 }
@@ -396,31 +396,39 @@ padding-bottom: 2%;
 
 .add-goal-main-div-wrapper {
   height: 10%;
+  
 }
 
 .add-goal-form {
   width: 93%;
+  background-color: lightcyan;
 }
 .goal-label {
   display: inline-block; 
   width: 10%; text-align: right; 
-  margin-right: 1%;
+  margin-right: 1.9%;
   padding-top: .9%;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-family: 'Chivo', sans-serif;
   color: rgb(40, 111, 218);
 
 }
 #goal-label-deadline-date{
   margin-bottom: .7% !important;
-  margin-top: .7% !important;
+  margin-top: 0% !important;
 }
 
 .add-goal-input {
   width: 20%;
-  padding-bottom: 1.4%;
+  padding-bottom: 0%;
+  padding-top: .8%;
+  margin-bottom: 1.2%;
   border: 1px solid grey;
   border-radius: 2%;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  text-align: left;
+
   
 }
 
@@ -434,12 +442,36 @@ font-size: .8em;
 color: white;
 font-weight: 800;
 font-family: 'Chivo', sans-serif;
+transition: all 0.5s;
+cursor: pointer;
+text-align: center;
+
 
 
 }
 
-.CalendarDay__selected_span {
-  background: #82e0aa; 
-  color: white;
-  border: 1px solid lightcyan;
+.submit-goal-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
+
+.submit-goal-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.submit-goal-button:hover span {
+  padding-right: 25px;
+}
+
+.submit-goal-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+

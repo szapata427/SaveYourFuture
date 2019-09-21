@@ -60,6 +60,8 @@ class AddGoal extends React.Component {
         calanderFocused: false
     })
   };
+
+  
   render() {
     return (
       <div className="add-goal-main-div-wrapper">
@@ -97,7 +99,7 @@ class AddGoal extends React.Component {
               isOutsideRange={() => false}
             />
             <br></br>
-            <button className="submit-goal-button">Submit!</button>
+            <button className="submit-goal-button"><span>Submit!</span></button>
           </form>
         </div>
       </div>

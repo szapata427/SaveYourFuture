@@ -1,36 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect, useReducer } from "react";
 import AddGoal from './AddGoal'
+import GoalsIndividualGoalComponent from './GoalsIndividualGoalComponent'
 import {url } from './TransactionsMasterComponent'
+import { connect } from "react-redux";
+import {addGoal} from '../Store/Actions/GoalsActions'
+import {fetchGoals} from '../Store/Actions/GoalsActions'
 
 
-const GoalsMasterComponent = (props) => {
 
-   const submitGoal = ({name, amount, notes, endDate}) => {
-       console.log(props)
+class GoalsMasterComponent extends React.Component {
+
+componentDidMount() {
+    console.log('componentDidMount for goals master component')
+    this.props.fetchGoals(this.props.user)
+}
+
+submitGoal = ({name, amount, notes, endDate}) => {
+    console.log(this.props)
        let goalData = {
-        UserId: props.user,
+        UserId: this.props.user,
         Amount:amount,
         Name: name,
         EndDate: endDate,
         Notes: notes,
        }
-        fetch(`${url}saveyourfuture/api/v1.0/AddGoal`, {
-            method: "Post",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify(goalData)
-        })
-        .then(response => response.json())
-        .then(result => console.log(result))
     }
-    return (
-        <div>
-            <div>Your Goals!</div>
-            <AddGoal submitGoal={submitGoal}/>
-        </div>
-    )
+
+    render() {
+
+        return (
+            <div>
+                <div>Your Goals!</div>
+                <AddGoal submitGoal={this.submitGoal}/>
+                <GoalsIndividualGoalComponent />
+            </div>
+        )
+
+
+    }
 }
 
-export default GoalsMasterComponent
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchGoals: userId => dispatch(fetchGoals(userId))
+    }
+
+}
+
+export default connect(null, mapDispatchToProps )(GoalsMasterComponent)
