@@ -11,6 +11,7 @@ import {fetchGoals} from '../Store/Actions/GoalsActions'
 class GoalsMasterComponent extends React.Component {
 
 componentDidMount() {
+    console.log(this.props)
     console.log('componentDidMount for goals master component')
     this.props.fetchGoals(this.props.user)
 }
@@ -24,6 +25,8 @@ submitGoal = ({name, amount, notes, endDate}) => {
         EndDate: endDate,
         Notes: notes,
        }
+
+       this.props.addGoal(goalData)
     }
 
     render() {
@@ -42,9 +45,16 @@ submitGoal = ({name, amount, notes, endDate}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchGoals: userId => dispatch(fetchGoals(userId))
+        fetchGoals: userId => dispatch(fetchGoals(userId)),
+        addGoal: goalObject => dispatch(addGoal(goalObject))
     }
 
 }
+
+// const mapStateToProps = state => {
+//     return {
+
+//     }
+// }
 
 export default connect(null, mapDispatchToProps )(GoalsMasterComponent)

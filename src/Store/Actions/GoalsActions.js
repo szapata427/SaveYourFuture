@@ -12,7 +12,8 @@ export const fetchGoals = (userId) => {
 }
 
 export const addGoal = (goal) => {
-    fetch(`${databaseurl}AddGoal`, {
+    return dispatch => {
+        return fetch(`${databaseurl}AddGoal`, {
         method: "Post",
         headers: {
             "Content-Type": "application/json",
@@ -21,5 +22,12 @@ export const addGoal = (goal) => {
         body: JSON.stringify(goal)
     })
     .then(response => response.json())
-    .then(result => console.log(result))
+    .then(result => {
+        console.log(result)
+        if (result.result.Success == true ) {
+            console.log('goal was added')
+            dispatch({type: "ADD_GOAL", value: goal})
+        }
+    }).catch(error => console.log(error))
+    }
 }

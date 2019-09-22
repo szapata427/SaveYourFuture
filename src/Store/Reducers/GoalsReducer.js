@@ -12,6 +12,11 @@ const initState = {
             let fetchedArray = action.value
             console.log(fetchedArray)
             return {currentGoals: fetchedArray}
+        case "ADD_GOAL":
+            console.log('adding goal')
+            let newGoal = action.value
+            let copyStateArrayWithNewGoal = [newGoal, ...state.currentGoals]
+            return {currentGoals: copyStateArrayWithNewGoal}
         
          default:
             return state
