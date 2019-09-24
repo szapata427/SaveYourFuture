@@ -77,3 +77,16 @@ else {
 return {WithdrawlSum: withdrawlSum, DepositSum: depositSum}
 
 }
+
+export const fixDateDisplay= (dateString) => {
+  let arrayDate;
+  let stringDateWanted = ""
+  if (typeof(dateString)) {
+    arrayDate = dateString.split(" ")
+ }
+if (arrayDate.length == 6) {
+  // string contains gmt 
+  stringDateWanted = arrayDate.slice(0,4).join(" ")
+}
+return stringDateWanted
+}

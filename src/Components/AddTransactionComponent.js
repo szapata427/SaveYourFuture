@@ -3,41 +3,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { number } from "prop-types";
-import {addTransactionToCurrent} from "../Store/Actions/TransactionActions";
+import { addTransactionToCurrent } from "../Store/Actions/TransactionActions";
 import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
-import IndividualTransactionComponent from './IndividualTransactionComponent'
+import IndividualTransactionComponent from "./IndividualTransactionComponent";
 import CurrentTransactionsComponent from "./CurrentTransactionsComponent";
-
-
 
 class AddTransaction extends Component {
   state = {
     numOfDecimalsTwo: false,
     transactionAmount: "",
     transactionType: "Withdrawl",
-    transactionNotes: null,
-
+    transactionNotes: null
   };
 
   handleChange = event => {
-    console.log(event.target.value);
     let htmlname = event.target.name;
-    console.log(htmlname)
     let inputValue = event.target.value;
-    let numberDecimals;
-    let inputstring;
     let inputDecimals;
     let inputBeforeDecimals;
-    let hasDecimals;
     if (inputValue == "") {
-        // inputvalue is empty so need to change the state to make the input field blank
-        this.setState({
-            transactionAmount: null
-        })
+      // inputvalue is empty so need to change the state to make the input field blank
+      this.setState({
+        transactionAmount: null
+      });
     }
     if (htmlname == "Amount" && inputValue) {
       if (this.state.numOfDecimalsTwo) {
-
         inputDecimals = inputValue
           .toString()
           .split(".")[1]
@@ -47,98 +38,91 @@ class AddTransaction extends Component {
         inputValue = parseFloat(inputBeforeDecimals + "." + inputDecimals);
       }
 
+      console.log(inputValue)
       this.setState({
         transactionAmount: inputValue
       });
 
       if (checkIfAmountHasTwoDecimals(inputValue)) {
-          this.setState({
-            numOfDecimalsTwo: true,
-
-          })
-      }
-
-      else {
         this.setState({
-            numOfDecimalsTwo: false,
-
-          })
+          numOfDecimalsTwo: true
+        });
+      } else {
+        this.setState({
+          numOfDecimalsTwo: false
+        });
       }
     }
 
     if (htmlname == "Notes") {
-        this.setState({
-            transactionNotes: event.target.value
-        })
+      this.setState({
+        transactionNotes: event.target.value
+      });
     }
     if (htmlname == "TransactionType") {
-        this.setState({
-            transactionType: event.target.value
-        })
+      this.setState({
+        transactionType: event.target.value
+      });
     }
-
   };
 
-
-  handleSubmit = (event) => {
-    event.preventDefault()
+  handleSubmit = event => {
+    event.preventDefault();
 
     let transactionInfo = {
-        Amount: this.state.transactionAmount,
-        Notes: this.state.transactionNotes,
-        Type: this.state.transactionType,
-        UserId: this.props.user.Id
-    }
+      Amount: this.state.transactionAmount,
+      Notes: this.state.transactionNotes,
+      Type: this.state.transactionType,
+      UserId: this.props.user.Id
+    };
 
     if (!checkIfAmountHasTwoDecimals(transactionInfo.Amount)) {
-        transactionInfo["Amount"] += ".00"
-        
+      transactionInfo["Amount"] += ".00";
     }
-      console.log(event)
-      console.log(this.state)
-      this.submitTransactionToDataBase(transactionInfo, (response) => {
-          console.log(response.result)
-          if (response.result["Success"] == true) {
-              console.log(`transaction was added to database `) 
-              let updateTransactionTable = {
-                  Amount: parseFloat(response.result.Amount),
-                  Type: response.result.TransactionType,
-                  Notes: response.result.Notes,
-                  CreatedOn: response.result.CreatedOn
-
-              }
-              this.props.addTransactionToCurrent(updateTransactionTable)
-              this.setState({
-                transactionNotes: "",
-                transactionAmount: ""
-              })
-          }
-      })
-  }
+    console.log(event);
+    console.log(this.state);
+    this.submitTransactionToDataBase(transactionInfo, response => {
+      console.log(response.result);
+      if (response.result["Success"] == true) {
+        console.log(`transaction was added to database `);
+        let updateTransactionTable = {
+          Amount: parseFloat(response.result.Amount),
+          Type: response.result.TransactionType,
+          Notes: response.result.Notes,
+          CreatedOn: response.result.CreatedOn
+        };
+        this.props.addTransactionToCurrent(updateTransactionTable);
+        this.setState({
+          transactionNotes: "",
+          transactionAmount: ""
+        });
+      }
+    });
+  };
 
   submitTransactionToDataBase = (info, callback) => {
-      console.log(info)
-      let url = 'http://localhost:5000/saveyourfuture/api/v1.0/AddTransaction'
-      fetch(url, {
-          method: "Post",
-          headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json"
-          },
-          body: JSON.stringify(info)
-
-      }).then(response => response.json())
-      .then(resp => callback(resp))
-
-  }
-
-
+    console.log(info);
+    let url = "http://localhost:5000/saveyourfuture/api/v1.0/AddTransaction";
+    fetch(url, {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(info)
+    })
+      .then(response => response.json())
+      .then(resp => callback(resp));
+  };
 
   render() {
     return (
       <React.Fragment>
         <div id="addtransaction-form-main-wrapper-div">
-          <form className="add-transaction-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <form
+            className="add-transaction-form"
+            onSubmit={e => this.handleSubmit(e)}
+          >
             <div className="select-options-tranactions-wrapper-div">
               <select
                 className="select-options-tranactions"
@@ -168,7 +152,7 @@ class AddTransaction extends Component {
             <br></br>
             <label class="transaction-label">Notes</label>
             <input
-            value={this.state.transactionNotes}
+              value={this.state.transactionNotes}
               id="transaction-notes-input"
               type="text"
               min="0.01"
@@ -176,7 +160,11 @@ class AddTransaction extends Component {
               name="Notes"
             />
             <br></br>
-            <input class="add-transaction-submit-button" type="submit" value='Submit'/>
+            <input
+              class="add-transaction-submit-button"
+              type="submit"
+              value="Submit"
+            />
           </form>
         </div>
       </React.Fragment>
@@ -185,20 +173,21 @@ class AddTransaction extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
-    return {
-      user: state.user.user,
-      currentTransactions: state.transactions
-    };
+  console.log(state);
+  return {
+    user: state.user.user,
+    currentTransactions: state.transactions
   };
+};
 
 const mapDispatchToProps = dispatch => {
-    return {
-        addTransactionToCurrent: (transInfo) => dispatch(addTransactionToCurrent(transInfo))
-    }
-}
+  return {
+    addTransactionToCurrent: transInfo =>
+      dispatch(addTransactionToCurrent(transInfo))
+  };
+};
 
 export default connect(
-    mapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(AddTransaction);

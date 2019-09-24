@@ -61,7 +61,7 @@ class AddGoal extends React.Component {
     })
   };
 
-  
+
   render() {
     return (
       <div className="add-goal-main-div-wrapper">
@@ -96,7 +96,6 @@ class AddGoal extends React.Component {
               focused={this.state.calanderFocused}
               onFocusChange={this.onFocusChange}
               numberOfMonths={1}
-              isOutsideRange={() => false}
             />
             <br></br>
             <button className="submit-goal-button"><span>Submit!</span></button>

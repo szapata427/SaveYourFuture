@@ -475,3 +475,22 @@ text-align: center;
   right: 0;
 }
 
+
+.master-goals-container-div {
+  background-color: rgb(141, 82, 189);
+  width: 95%;
+  color: white;
+}
+
+.span-individual-goal-info {
+  margin-left: 2em;
+  word-wrap:break-word;
+  display: inline-block;
+  width: 12%;
+}
+
+.individual-goal-div {
+  width: 110%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
