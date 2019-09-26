@@ -6,7 +6,9 @@ import { NavLink } from "react-router-dom";
 import AddTransaction from "./AddTransactionComponent";
 import ShowCurrentTransactions from "./CurrentTransactionsComponent";
 import { fetchUsersTransactions } from "../Store/Actions/TransactionActions";
+import { fetchGoals } from "../Store/Actions/GoalsActions";
 import TransactionsTotalsDashboard from "./TransactionsTotalsDashboard";
+import CurrentTransactionsComponent from "./CurrentTransactionsComponent";
 
 export const url = "http://localhost:5000/";
 
@@ -19,6 +21,7 @@ state = {
   componentDidMount() {
       let userId = this.props.userId
     this.props.fetchUsersTransactions(userId);
+    this.props.fetchGoals(userId);
   }
 
 lastDaysSelected = (e) => {
@@ -26,6 +29,8 @@ this.setState({
   dateFilterLastDays: e.target.value
 })
 }
+
+
 
   render() {
     return (
@@ -64,7 +69,8 @@ const mapStateToProps = state => {
     console.log(state)
   return {
     user: state.user,
-    currentTransactions: state.currentTransactions
+    currentTransactions: state.currentTransactions,
+    currentGoals: state.goals
   };
 };
 
@@ -72,7 +78,8 @@ const mapDispatchToProps = dispatch => {
   console.log(`hitting dispatch for all transactions`);
   return {
     fetchUsersTransactions: userInfo =>
-      dispatch(fetchUsersTransactions(userInfo))
+      dispatch(fetchUsersTransactions(userInfo)),
+      fetchGoals: userInfo => dispatch(fetchGoals(userInfo))
   };
 };
 

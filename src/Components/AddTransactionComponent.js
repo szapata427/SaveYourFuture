@@ -7,13 +7,16 @@ import { addTransactionToCurrent } from "../Store/Actions/TransactionActions";
 import { checkIfAmountHasTwoDecimals } from "./HelperFunctions";
 import IndividualTransactionComponent from "./IndividualTransactionComponent";
 import CurrentTransactionsComponent from "./CurrentTransactionsComponent";
+import { fetchGoals } from "../Store/Actions/GoalsActions";
+
 
 class AddTransaction extends Component {
   state = {
     numOfDecimalsTwo: false,
     transactionAmount: "",
     transactionType: "Withdrawl",
-    transactionNotes: null
+    transactionNotes: null,
+    goalId: null
   };
 
   handleChange = event => {
@@ -115,6 +118,22 @@ class AddTransaction extends Component {
       .then(resp => callback(resp));
   };
 
+  displayCurrentGoals = () => {
+    console.log('we have goals!')
+    let goalsArray = this.props.currentGoals
+   let userId = this.props.user.Id
+
+   console.log(goalsArray)
+   return goalsArray.map(goal => {
+     if (goal.UserId == userId) {
+       console.log('goals for the user')
+       return  <option>
+          {goal.Name}
+         </option>
+     }
+   })
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -165,6 +184,10 @@ class AddTransaction extends Component {
               type="submit"
               value="Submit"
             />
+            <select>
+            {this.props.currentGoals.length > 0 ? this.displayCurrentGoals() : null}
+            </select>
+              
           </form>
         </div>
       </React.Fragment>
@@ -176,14 +199,16 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     user: state.user.user,
-    currentTransactions: state.transactions
+    currentTransactions: state.transactions,
+    currentGoals: state.goals.currentGoals
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     addTransactionToCurrent: transInfo =>
-      dispatch(addTransactionToCurrent(transInfo))
+      dispatch(addTransactionToCurrent(transInfo)), 
+      fetchGoals: userInfo => dispatch(fetchGoals(userInfo))
   };
 };
 

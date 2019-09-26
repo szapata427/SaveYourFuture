@@ -51,10 +51,4 @@ const mapDispatchToProps = (dispatch) => {
 
 }
 
-// const mapStateToProps = state => {
-//     return {
-
-//     }
-// }
-
 export default connect(null, mapDispatchToProps )(GoalsMasterComponent)

@@ -7,7 +7,7 @@ import { fetchUsersTransactions } from "../Store/Actions/TransactionActions";
 import { filteredTransactions } from "../Store/Actions/TransactionActions";
 
 class ShowCurrentTransactions extends Component {
-    
+
     mapFetchTransactions = () => {
         let lastDays = this.props.lastDays == "null" ? null : this.props.lastDays;
         let transactionsArrayFromProps = this.props.currentTransactions
@@ -48,6 +48,9 @@ class ShowCurrentTransactions extends Component {
 
     }
 
+
+
+
     render() {
 
         return(
@@ -62,7 +65,8 @@ const mapStateToProps = (state) => {
     console.log(state, 'in currentransactions')
 
         return {
-            currentTransactions: state.currentTransactions.currentTransactions
+            currentTransactions: state.currentTransactions.currentTransactions,
+            currentGoals: state.goals
         }
         
     }
