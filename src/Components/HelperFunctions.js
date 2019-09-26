@@ -65,13 +65,18 @@ export const totalAmountPerTransactionType = (transactionsArray, lastDays) => {
   return { WithdrawlSum: withdrawlSum, DepositSum: depositSum };
 };
 
-export const fixDateDisplay = dateString => {
-  console.log(dateString)
+export const fixDateDisplay = date => {
+  console.log(date)
   let arrayDate;
   let stringDateWanted = "";
-  if (typeof dateString == "string") {
-    console.log(dateString);
-    arrayDate = dateString.split(" ");
+
+  if (date.isMoment == true) {
+   let dateMomement = date.Date
+    return dateMomement.format('ddd, D MMM YYYY')
+  }
+  if (typeof date == "string") {
+    console.log(date);
+    arrayDate = date.split(" ");
     if (arrayDate.length == 6) {
       // string contains gmt
       stringDateWanted = arrayDate.slice(0, 4).join(" ");

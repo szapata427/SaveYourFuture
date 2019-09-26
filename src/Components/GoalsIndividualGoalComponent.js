@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {fixDateDisplay} from './HelperFunctions'
+import moment from 'moment'
 
 class GoalsIndividualGoal extends React.Component {
   individualGoals() {
@@ -11,8 +12,8 @@ class GoalsIndividualGoal extends React.Component {
           <span className="span-individual-goal-info">${goal.Amount}</span>
           <span className="span-individual-goal-info">{goal.Name}</span>
           <span className="span-individual-goal-info">{goal.Notes}</span>
-          <span className="span-individual-goal-info">{fixDateDisplay(goal.EndDate)}</span>
-          <span className="span-individual-goal-info">{fixDateDisplay(goal.CreatedOn)}</span>
+          <span className="span-individual-goal-info">{goal.isMomemnt == true ? fixDateDisplay({Date: goal.EndDate, isMoment: true}) : fixDateDisplay(goal.EndDate)}</span>
+          <span className="span-individual-goal-info">{goal.CreatedOn ? fixDateDisplay(goal.CreatedOn): fixDateDisplay({Date: moment(), isMoment: true})}</span>
 
             </div>
         </React.Fragment>

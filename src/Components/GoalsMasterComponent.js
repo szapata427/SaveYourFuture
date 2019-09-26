@@ -17,7 +17,7 @@ componentDidMount() {
 }
 
 submitGoal = ({name, amount, notes, endDate}) => {
-    console.log(this.props)
+    console.log(endDate.format())
        let goalData = {
         UserId: this.props.user,
         Amount:amount,
