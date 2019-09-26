@@ -394,6 +394,24 @@ padding-bottom: 2%;
 
 /* goals css */
 
+.all-my-goals-title-banner {
+  background-color: lightgreen;
+  color: white;
+  font-size: 3em;
+  font-family: 'Chivo', sans-serif;
+  /* margin-right: 7%; */
+  width: 93%;
+  padding-bottom: .5em;
+  font-weight: 800;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.span-my-goals {
+  text-align: center;
+  margin-left: 12%;
+}
+
 .add-goal-main-div-wrapper {
   height: 10%;
   
@@ -402,6 +420,10 @@ padding-bottom: 2%;
 .add-goal-form {
   width: 93%;
   background-color: lightcyan;
+  padding-bottom: 1.1em;
+  border:1px solid grey;
+  border-radius: 20px;
+  padding-top: .7em;
 }
 .goal-label {
   display: inline-block; 
@@ -440,7 +462,7 @@ border: .5px solid lightgreen;
 border-radius: 3%;
 font-size: .8em;
 color: white;
-font-weight: 900;
+font-weight: 600;
 font-family: 'Chivo', sans-serif;
 transition: all 0.5s;
 cursor: pointer;
@@ -477,12 +499,13 @@ font-family: 'Chivo', sans-serif;
 
 
 .master-goals-container-div {
-  background-color: rgb(161, 228, 189);
+  background-color: lightcyan;
   width: 75%;
   color: white;
   margin-left: 18%;
   font-size: 1.1em;
   font-family: 'Chivo', sans-serif;
+  
 }
 
 .span-individual-goal-info {
@@ -504,4 +527,14 @@ font-family: 'Chivo', sans-serif;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
+}
+
+.add-goal-banner-div {
+  font-size: 2.3em;
+  color: rgb(23, 199, 23);
+  margin-bottom: 1em;
+  margin-top: .7em;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+
 }

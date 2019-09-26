@@ -23,13 +23,15 @@ class GoalsIndividualGoal extends React.Component {
   render() {
     console.log(this.props.goals);
     return (
-      <div>
-        All my goals
+        <React.Fragment>
+      <div className="all-my-goals-title-banner">
+        <span className="span-my-goals">My Goals</span>
+        </div>
         <div className="master-goals-container-div">
         {this.props.goals ? this.individualGoals() : null}
+    </div>
 
-        </div>
-      </div>
+        </React.Fragment>
     );
   }
 }

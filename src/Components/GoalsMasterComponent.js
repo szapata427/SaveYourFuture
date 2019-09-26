@@ -33,7 +33,7 @@ submitGoal = ({name, amount, notes, endDate}) => {
 
         return (
             <div>
-                <div>Your Goals!</div>
+                <div className="add-goal-banner-div">Add Goal</div>
                 <AddGoal submitGoal={this.submitGoal}/>
                 <GoalsIndividualGoalComponent />
             </div>
