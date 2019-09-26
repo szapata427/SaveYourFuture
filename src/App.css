@@ -379,13 +379,13 @@ padding-bottom: 2%;
   background-color: rgb(92, 175, 92);
   color: white;
   font-weight: 700;
-  font-size: 1.1em;
+  font-size: 1.0em;
 }
 [transtype="Withdrawl"] {
   background-color: rgb(241, 148, 148);
   font-weight: 700;
   color: white;
-  font-size: .9em;
+  font-size: 1em;
 
 
 }
@@ -440,12 +440,12 @@ border: .5px solid lightgreen;
 border-radius: 3%;
 font-size: .8em;
 color: white;
-font-weight: 800;
+font-weight: 900;
 font-family: 'Chivo', sans-serif;
 transition: all 0.5s;
 cursor: pointer;
 text-align: center;
-
+font-family: 'Chivo', sans-serif;
 
 
 }
@@ -477,20 +477,31 @@ text-align: center;
 
 
 .master-goals-container-div {
-  background-color: rgb(141, 82, 189);
-  width: 95%;
+  background-color: rgb(161, 228, 189);
+  width: 75%;
   color: white;
+  margin-left: 18%;
+  font-size: 1.1em;
+  font-family: 'Chivo', sans-serif;
 }
 
 .span-individual-goal-info {
   margin-left: 2em;
   word-wrap:break-word;
   display: inline-block;
-  width: 12%;
+  width: 15%;
+  
 }
 
 .individual-goal-div {
-  width: 110%;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  width: 99.8%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: 2px solid black;
+  background-color: rgb(25, 131, 202);
+  padding-bottom: 1em;
+  padding-top: 1em;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }

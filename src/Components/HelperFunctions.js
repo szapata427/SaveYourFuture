@@ -1,92 +1,81 @@
-
-  export const checkIfAmountHasTwoDecimals = (inputValue) => {
-    let inputstring;
-    let inputDecimals;
-    let inputBeforeDecimals;
-    let hasDecimals;
-    inputValue = parseFloat(inputValue);
-    inputstring = inputValue.toString();
-    hasDecimals = inputstring.indexOf(".");
-    if (hasDecimals != -1) {
-      var lastTwoDecimals = inputstring.split(".")[1];
-      if (lastTwoDecimals.length === 2) {
-  return true
-      }
-      else {
-return false
-      }
+export const checkIfAmountHasTwoDecimals = inputValue => {
+  let inputstring;
+  let inputDecimals;
+  let inputBeforeDecimals;
+  let hasDecimals;
+  inputValue = parseFloat(inputValue);
+  inputstring = inputValue.toString();
+  hasDecimals = inputstring.indexOf(".");
+  if (hasDecimals != -1) {
+    var lastTwoDecimals = inputstring.split(".")[1];
+    if (lastTwoDecimals.length === 2) {
+      return true;
+    } else {
+      return false;
     }
   }
+};
 
-
-export const twoDecimalsNumber = (number) => {
+export const twoDecimalsNumber = number => {
   let newNumber;
   if (typeof number == "string") {
-    number = parseFloat(number)
+    number = parseFloat(number);
   }
-  
-  newNumber = number.toFixed(2)
 
-  return newNumber
-}
+  newNumber = number.toFixed(2);
+
+  return newNumber;
+};
 
 export const totalAmountPerTransactionType = (transactionsArray, lastDays) => {
-  let withdrawlSum = 0
-  let depositSum = 0
+  let withdrawlSum = 0;
+  let depositSum = 0;
   let date;
-  let lastDaysDate
+  let lastDaysDate;
 
   transactionsArray.forEach(trans => {
     if (lastDays != null) {
-        date = new Date();
-        lastDaysDate = date.setDate(date.getDate() - lastDays);
-        
-        if (Date.parse(trans.CreatedOn) >= lastDaysDate ) {
+      date = new Date();
+      lastDaysDate = date.setDate(date.getDate() - lastDays);
 
+      if (Date.parse(trans.CreatedOn) >= lastDaysDate) {
         if (trans.Amount !== "number") {
-            trans["Amount"] = parseFloat(trans.Amount)
+          trans["Amount"] = parseFloat(trans.Amount);
         }
-        
-        if (trans.Type == 'Withdrawl') {
-            withdrawlSum += trans.Amount
-            
+
+        if (trans.Type == "Withdrawl") {
+          withdrawlSum += trans.Amount;
+        } else if (trans.Type == "Deposit") {
+          depositSum += trans.Amount;
         }
-        else if (trans.Type == 'Deposit') {
-            depositSum += trans.Amount
-        }
-        
-    }
-}
+      }
+    } else {
+      if (trans.Amount !== "number") {
+        trans["Amount"] = parseFloat(trans.Amount);
+      }
 
-else {
-    if (trans.Amount !== "number") {
-        trans["Amount"] = parseFloat(trans.Amount)
+      if (trans.Type == "Withdrawl") {
+        withdrawlSum += trans.Amount;
+      } else if (trans.Type == "Deposit") {
+        depositSum += trans.Amount;
+      }
     }
-    
-    if (trans.Type == 'Withdrawl') {
-        withdrawlSum += trans.Amount
-        
-    }
-    else if (trans.Type == 'Deposit') {
-        depositSum += trans.Amount
-    }
-    
-}
-})
+  });
 
-return {WithdrawlSum: withdrawlSum, DepositSum: depositSum}
+  return { WithdrawlSum: withdrawlSum, DepositSum: depositSum };
+};
 
-}
-
-export const fixDateDisplay= (dateString) => {
+export const fixDateDisplay = dateString => {
+  console.log(dateString)
   let arrayDate;
-  let stringDateWanted = ""
-  if (typeof(dateString)) {
-    arrayDate = dateString.split(" ")
- }
-if (arrayDate.length == 6) {
-  // string contains gmt 
-  stringDateWanted = arrayDate.slice(0,4).join(" ")
-}
-return stringDateWanted
-}
+  let stringDateWanted = "";
+  if (typeof dateString == "string") {
+    console.log(dateString);
+    arrayDate = dateString.split(" ");
+    if (arrayDate.length == 6) {
+      // string contains gmt
+      stringDateWanted = arrayDate.slice(0, 4).join(" ");
+    }
+  }
+  return stringDateWanted;
+};
