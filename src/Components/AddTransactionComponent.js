@@ -9,14 +9,14 @@ import IndividualTransactionComponent from "./IndividualTransactionComponent";
 import CurrentTransactionsComponent from "./CurrentTransactionsComponent";
 import { fetchGoals } from "../Store/Actions/GoalsActions";
 
-
 class AddTransaction extends Component {
   state = {
     numOfDecimalsTwo: false,
     transactionAmount: "",
     transactionType: "Withdrawl",
     transactionNotes: null,
-    goalId: null
+    goalId: null,
+    goalName: "No goal"
   };
 
   handleChange = event => {
@@ -41,7 +41,7 @@ class AddTransaction extends Component {
         inputValue = parseFloat(inputBeforeDecimals + "." + inputDecimals);
       }
 
-      console.log(inputValue)
+      console.log(inputValue);
       this.setState({
         transactionAmount: inputValue
       });
@@ -76,7 +76,8 @@ class AddTransaction extends Component {
       Amount: this.state.transactionAmount,
       Notes: this.state.transactionNotes,
       Type: this.state.transactionType,
-      UserId: this.props.user.Id
+      UserId: this.props.user.Id,
+      GoalId: this.state.goalId
     };
 
     if (!checkIfAmountHasTwoDecimals(transactionInfo.Amount)) {
@@ -92,7 +93,8 @@ class AddTransaction extends Component {
           Amount: parseFloat(response.result.Amount),
           Type: response.result.TransactionType,
           Notes: response.result.Notes,
-          CreatedOn: response.result.CreatedOn
+          CreatedOn: response.result.CreatedOn,
+          GoalId: response.result.GoalId
         };
         this.props.addTransactionToCurrent(updateTransactionTable);
         this.setState({
@@ -102,6 +104,12 @@ class AddTransaction extends Component {
       }
     });
   };
+
+  handleGoal = (e) => {
+    this.setState({
+      goalId: e.target.value
+    })
+  }
 
   submitTransactionToDataBase = (info, callback) => {
     console.log(info);
@@ -119,20 +127,18 @@ class AddTransaction extends Component {
   };
 
   displayCurrentGoals = () => {
-    console.log('we have goals!')
-    let goalsArray = this.props.currentGoals
-   let userId = this.props.user.Id
+    console.log("we have goals!");
+    let goalsArray = this.props.currentGoals;
+    let userId = this.props.user.Id;
 
-   console.log(goalsArray)
-   return goalsArray.map(goal => {
-     if (goal.UserId == userId) {
-       console.log('goals for the user')
-       return  <option>
-          {goal.Name}
-         </option>
-     }
-   })
-  }
+    console.log(goalsArray);
+    return goalsArray.map(goal => {
+      if (goal.UserId == userId) {
+        console.log("goals for the user");
+        return <option value={goal.Id}>{goal.Name}</option>;
+      }
+    });
+  };
 
   render() {
     return (
@@ -179,15 +185,19 @@ class AddTransaction extends Component {
               name="Notes"
             />
             <br></br>
+
+            {this.props.currentGoals.length > 0 &&
+            this.state.transactionType == "Deposit" ? (
+              <select onChange={this.handleGoal} className="add-transaction-goal-select" >
+                {this.displayCurrentGoals()}
+              </select>
+            ) : null}
+
             <input
               class="add-transaction-submit-button"
               type="submit"
               value="Submit"
             />
-            <select>
-            {this.props.currentGoals.length > 0 ? this.displayCurrentGoals() : null}
-            </select>
-              
           </form>
         </div>
       </React.Fragment>
@@ -207,8 +217,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addTransactionToCurrent: transInfo =>
-      dispatch(addTransactionToCurrent(transInfo)), 
-      fetchGoals: userInfo => dispatch(fetchGoals(userInfo))
+      dispatch(addTransactionToCurrent(transInfo)),
+    fetchGoals: userInfo => dispatch(fetchGoals(userInfo))
   };
 };
 
