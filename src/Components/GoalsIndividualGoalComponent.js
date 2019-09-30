@@ -2,6 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { fixDateDisplay } from "./HelperFunctions";
 import moment from "moment";
+import { SingleDatePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
+
+
+const now = moment();
 
 class GoalsIndividualGoal extends React.Component {
   state = {
@@ -9,7 +14,10 @@ class GoalsIndividualGoal extends React.Component {
     editGoalState: false,
     editGoalAmount: "",
     editGoalName: "",
-    editGoalNotes: ""
+    editGoalNotes: "",    
+    endDate: now,
+    error: false,
+    calanderFocused: false
   };
 
   editGoal = (e, goalData) => {
@@ -20,38 +28,70 @@ class GoalsIndividualGoal extends React.Component {
     });
   };
 
-  editGoalAmount = (e) => {
+  onFocusChange = ({ focused }) => {
+    this.setState({
+      calanderFocused: focused
+    });
+  };
+
+
+  onDateChange = endDate => {
+    this.setState({
+      endDate: endDate
+    });
+  };
+
+  editGoalAmount = e => {
     let amount = e.target.value;
     if (amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState({
         editGoalAmount: amount
       });
     }
-  }
+  };
 
-  editGoalName = (e) => {
-    let name = e.target.value
+  editGoalName = e => {
+    let name = e.target.value;
     this.setState({
-        editGoalName: name
-    })
-  }
+      editGoalName: name
+    });
+  };
 
-  editGoalNotes = (e) => {
-      let notes = e.target.value
-      this.setState({
-          editGoalNotes: notes
-      })
-  }
+  editGoalNotes = e => {
+    let notes = e.target.value;
+    this.setState({
+      editGoalNotes: notes
+    });
+  };
+
+  submitedUpdateGoal = (e, oldGoal) => {
+    e.preventDefault();
+    console.log(this.state)
+    let updatedObjected = {};
+    this.props.updateGoalSubmited(oldGoal);
+  };
+
+//   updateStateWithGoalInfo = (goal) => {
+//     this.setState({
+//         editGoalAmount: goal.Amount,
+//         editGoalName: goal.Name,
+//         editGoalNotes: goal.Notes,   
+//         endDate: goal.EndDate
+//     })
+//   }
 
   individualGoals() {
     return this.props.goals.map(goal => {
       if (this.state.editGoalState == true) {
         if (this.state.goalId == goal.Id) {
+
           return (
             <React.Fragment>
-              <div className="individual-goal-div">
-                <form>
-                    <label>Amount</label>
+              <div className="individual-goal-div" id="selected-edit-individual-goal">
+                <form
+                  className="edit-goal-form"
+                  onSubmit={this.submitedUpdateGoal}
+                >
                   <input
                     className="edit-goal-input"
                     type="text"
@@ -73,20 +113,23 @@ class GoalsIndividualGoal extends React.Component {
                     onChange={this.editGoalNotes}
                     placeholder={goal.Notes}
                   />
-                </form>
-                <span className="span-individual-goal-info">
+                <span className="span-edit-individual-goal-info">
                   {goal.isMomemnt == true
                     ? fixDateDisplay({ Date: goal.EndDate, isMoment: true })
                     : fixDateDisplay(goal.EndDate)}
                 </span>
-                <span className="span-individual-goal-info">
-                  {goal.CreatedOn
-                    ? fixDateDisplay(goal.CreatedOn)
-                    : fixDateDisplay({ Date: moment(), isMoment: true })}
-                </span>
+                <SingleDatePicker
+                  date={this.state.createdAt}
+                  onDateChange={this.onDateChange}
+                  focused={this.state.calanderFocused}
+                  onFocusChange={this.onFocusChange}
+                  numberOfMonths={1}
+                  />
+                <button >Update Goal</button>
                 <button className="individual-goal-delete-button">
                   Delete
                 </button>
+                  </form>
               </div>
             </React.Fragment>
           );

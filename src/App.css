@@ -541,5 +541,24 @@ display: inline-block;
 
 }
 
-.add-transaction-goal-select {
+.edit-goal-form {
+  display: inline-block;
+  width: 100%;}
+
+.edit-goal-input {
+  display: inline-block;
+  margin-right: 1.5em;
+  font-size: .9em;
+  width: 15%;
+}
+
+.span-edit-individual-goal-info {
+  width: 15%;
+}
+.DateInput.DateInput--with-caret.DateInput--open-down {
+width: 50px;
+}
+
+#selected-edit-individual-goal {
+  background-color: rgb(42, 238, 107);
 }

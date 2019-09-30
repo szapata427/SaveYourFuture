@@ -29,13 +29,18 @@ submitGoal = ({name, amount, notes, endDate}) => {
        this.props.addGoal(goalData)
     }
 
+    updateGoalSubmited = (oldGoalInfo, newGoalInfo) => {
+        console.log(oldGoalInfo)
+        console.log(newGoalInfo)
+    }
+
     render() {
 
         return (
             <div>
                 <div className="add-goal-banner-div">Add Goal</div>
-                <AddGoal submitGoal={this.submitGoal}/>
-                <GoalsIndividualGoalComponent />
+                <AddGoal submitGoal={this.submitGoal} />
+                <GoalsIndividualGoalComponent updateGoalSubmited={this.updateGoalSubmited}/>
             </div>
         )
 
