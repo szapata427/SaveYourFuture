@@ -16,16 +16,20 @@ componentDidMount() {
     this.props.fetchGoals(this.props.user)
 }
 
-submitGoal = ({name, amount, notes, endDate}) => {
-    console.log(endDate.format())
-       let goalData = {
+goalObjectCreation = ({name, amount, notes, endDate}) => {
+    let goalData = {
         UserId: this.props.user,
         Amount:amount,
         Name: name,
         EndDate: endDate,
         Notes: notes,
        }
+       return goalData
+}
 
+submitGoal = (goal) => {
+    let goalData = this.goalObjectCreation(goal)
+       console.log(goalData)
        this.props.addGoal(goalData)
     }
 

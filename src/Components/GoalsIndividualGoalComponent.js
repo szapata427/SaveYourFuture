@@ -66,19 +66,12 @@ class GoalsIndividualGoal extends React.Component {
 
   submitedUpdateGoal = (e, oldGoal) => {
     e.preventDefault();
-    console.log(this.state)
-    let updatedObjected = {};
-    this.props.updateGoalSubmited(oldGoal);
+    console.log(oldGoal)
+    let newGoal = this.state
+    this.props.updateGoalSubmited(oldGoal, newGoal);
   };
 
-//   updateStateWithGoalInfo = (goal) => {
-//     this.setState({
-//         editGoalAmount: goal.Amount,
-//         editGoalName: goal.Name,
-//         editGoalNotes: goal.Notes,   
-//         endDate: goal.EndDate
-//     })
-//   }
+
 
   individualGoals() {
     return this.props.goals.map(goal => {
@@ -90,7 +83,7 @@ class GoalsIndividualGoal extends React.Component {
               <div className="individual-goal-div" id="selected-edit-individual-goal">
                 <form
                   className="edit-goal-form"
-                  onSubmit={this.submitedUpdateGoal}
+                  onSubmit={(e) => this.submitedUpdateGoal(e, goal)}
                 >
                   <input
                     className="edit-goal-input"
