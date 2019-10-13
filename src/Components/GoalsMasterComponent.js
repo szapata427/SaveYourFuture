@@ -5,6 +5,7 @@ import {url } from './TransactionsMasterComponent'
 import { connect } from "react-redux";
 import {addGoal} from '../Store/Actions/GoalsActions'
 import {fetchGoals} from '../Store/Actions/GoalsActions'
+import {editGoal} from '../Store/Actions/GoalsActions'
 
 
 
@@ -36,6 +37,18 @@ submitGoal = (goal) => {
     updateGoalSubmited = (oldGoalInfo, newGoalInfo) => {
         console.log(oldGoalInfo)
         console.log(newGoalInfo)
+        let goalData = {
+            UserId: oldGoalInfo.UserId,
+            Amount: newGoalInfo.editGoalAmount == "" ? oldGoalInfo.Amount : newGoalInfo.editGoalAmount,
+            Name: newGoalInfo.editGoalName  == "" ? oldGoalInfo.Name : newGoalInfo.editGoalName,
+            EndDate: newGoalInfo.endDate,
+            Notes: newGoalInfo.editGoalNotes  == "" ? oldGoalInfo.Notes : newGoalInfo.editGoalNotes,
+            GoalId: oldGoalInfo.Id,
+            CreatedOn: oldGoalInfo.CreatedOn
+        }
+        console.log(goalData)
+        this.props.editGoal(goalData)
+
     }
 
     render() {
@@ -55,7 +68,8 @@ submitGoal = (goal) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchGoals: userId => dispatch(fetchGoals(userId)),
-        addGoal: goalObject => dispatch(addGoal(goalObject))
+        addGoal: goalObject => dispatch(addGoal(goalObject)),
+        editGoal: goalObject => dispatch(editGoal(goalObject))
     }
 
 }

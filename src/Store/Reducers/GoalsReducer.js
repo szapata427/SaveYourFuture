@@ -19,7 +19,25 @@ const initState = {
             newGoal["isMomemnt"] = true
             let copyStateArrayWithNewGoal = [newGoal, ...state.currentGoals]
             return {currentGoals: copyStateArrayWithNewGoal}
-        
+        case "EDIT_GOAL":
+            let editedGoal = action.value
+            let currentGoalsArray = state.currentGoals
+            let filteredGoalsArray = currentGoalsArray.filter(goal => {
+                if (goal.Id == editedGoal.GoalId) {
+                    return editedGoal
+                } 
+            })
+            if (filteredGoalsArray > 0 ) {
+                editedGoal= filteredGoalsArray[0]
+            }
+            let deleteEditedGoalArray = currentGoalsArray.filter(goal => {
+                if (goal.Id !== editedGoal.GoalId) {
+                    return goal
+                }
+            })
+            console.log(deleteEditedGoalArray)
+             deleteEditedGoalArray.unshift(editedGoal)
+            return {currentGoals: deleteEditedGoalArray}
          default:
             return state
     }

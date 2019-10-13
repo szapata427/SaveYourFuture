@@ -31,3 +31,10 @@ export const addGoal = (goal) => {
     }).catch(error => console.log(error))
     }
 }
+
+export const editGoal = (goalObject) => {
+    return ({
+        type: "EDIT_GOAL",
+        value: goalObject
+    })
+}

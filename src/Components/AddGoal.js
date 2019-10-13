@@ -50,7 +50,7 @@ class AddGoal extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.submitGoal(this.state);
+    this.props.submitGççoal(this.state);
     this.setState({
         name: "",
         amount: "",
