@@ -66,6 +66,7 @@ export const totalAmountPerTransactionType = (transactionsArray, lastDays) => {
 };
 
 export const fixDateDisplay = date => {
+  console.log(date)
   let arrayDate;
   let stringDateWanted = "";
 

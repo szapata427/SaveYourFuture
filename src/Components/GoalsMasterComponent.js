@@ -37,14 +37,18 @@ submitGoal = (goal) => {
     updateGoalSubmited = (oldGoalInfo, newGoalInfo) => {
         console.log(oldGoalInfo)
         console.log(newGoalInfo)
+        console.log( newGoalInfo.changedEndDate ? newGoalInfo.endDate : oldGoalInfo.endDate,)
+        let isMoment = newGoalInfo.changedEndDate ? true : false
         let goalData = {
             UserId: oldGoalInfo.UserId,
             Amount: newGoalInfo.editGoalAmount == "" ? oldGoalInfo.Amount : newGoalInfo.editGoalAmount,
             Name: newGoalInfo.editGoalName  == "" ? oldGoalInfo.Name : newGoalInfo.editGoalName,
-            EndDate: newGoalInfo.endDate,
+            EndDate: newGoalInfo.changedEndDate ? newGoalInfo.endDate : oldGoalInfo.EndDate,
             Notes: newGoalInfo.editGoalNotes  == "" ? oldGoalInfo.Notes : newGoalInfo.editGoalNotes,
             GoalId: oldGoalInfo.Id,
-            CreatedOn: oldGoalInfo.CreatedOn
+            CreatedOn: oldGoalInfo.CreatedOn,
+            isMoment: isMoment
+
         }
         console.log(goalData)
         this.props.editGoal(goalData)

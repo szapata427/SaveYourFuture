@@ -17,7 +17,8 @@ class GoalsIndividualGoal extends React.Component {
     editGoalNotes: "",    
     endDate: now,
     error: false,
-    calanderFocused: false
+    calanderFocused: false,
+    changedEndDate: false
   };
 
   editGoal = (e, goalData) => {
@@ -77,7 +78,6 @@ class GoalsIndividualGoal extends React.Component {
     return this.props.goals.map(goal => {
       if (this.state.editGoalState == true) {
         if (this.state.goalId == goal.Id) {
-
           return (
             <React.Fragment>
               <div className="individual-goal-div" id="selected-edit-individual-goal">
