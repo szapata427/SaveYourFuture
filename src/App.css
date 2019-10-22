@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Rubik&display=swap");
 
 
 .App {
@@ -118,7 +119,8 @@ li a:hover:not(.active) {
   display: inline-block;
   color: rgb(157, 228, 252);
   font-size: 3em;
-  font-family: 'Chivo', sans-serif;
+    font-family: "Rubik", sans-serif;
+
   margin-bottom: 1em;
   width: 25%;
   font-weight: 800;
@@ -174,6 +176,7 @@ padding-bottom: 2%;
 margin-left: 18.5%;
 border: 2px solid white;
 border-radius: 10px;
+font-family: "Rubik", sans-serif;
 
 }
 
@@ -399,7 +402,7 @@ padding-bottom: 2%;
   background-color: lightgreen;
   color: white;
   font-size: 3em;
-  font-family: 'Chivo', sans-serif;
+  font-family: "Rubik", sans-serif;
   /* margin-right: 7%; */
   width: 93%;
   padding-bottom: .5em;
@@ -432,8 +435,9 @@ padding-bottom: 2%;
   margin-right: 1.9%;
   padding-top: .9%;
   font-size: 1.2em;
-  font-family: 'Chivo', sans-serif;
+  font-family: "Rubik", sans-serif;
   color: rgb(40, 111, 218);
+
 
 }
 #goal-label-deadline-date{
@@ -464,11 +468,12 @@ border-radius: 3%;
 font-size: .8em;
 color: white;
 font-weight: 600;
-font-family: 'Chivo', sans-serif;
+font-family: "Rubik", sans-serif;
 transition: all 0.5s;
 cursor: pointer;
 text-align: center;
-font-family: 'Chivo', sans-serif;
+  font-family: "Rubik", sans-serif;
+
 display: inline-block;
 
 
@@ -506,15 +511,16 @@ display: inline-block;
   color: white;
   margin-left: 18%;
   font-size: 1.1em;
-  font-family: 'Chivo', sans-serif;
+    font-family: "Rubik", sans-serif;
+
   
 }
 
 .span-individual-goal-info {
-  margin-left: 2em;
+  margin-left: 1.2em;
   word-wrap:break-word;
   display: inline-block;
-  width: 15%;
+  width: 13%;
   
 }
 
@@ -536,7 +542,8 @@ display: inline-block;
   color: rgb(23, 199, 23);
   margin-bottom: 1em;
   margin-top: .7em;
-  font-family: 'Chivo', sans-serif;
+    font-family: "Rubik", sans-serif;
+
   font-weight: 700;
 
 }
@@ -561,4 +568,26 @@ width: 50px;
 
 #selected-edit-individual-goal {
   background-color: rgb(42, 238, 107);
+}
+
+.individual-goal-edit-button {
+background-color: orange;
+padding: 1em 1.5em 1em 1.5em;
+border: 1px solid orange;
+border-radius: 10%;
+color: white;
+margin-left: .5em;
+font-family: "Rubik", sans-serif;
+
+}
+
+.individual-goal-delete-button {
+background-color: red;
+padding: 1em 1.5em 1em 1.5em;
+border: 1px solid red;
+border-radius: 10%;
+color: white;
+margin-left: .5em;
+font-family: "Rubik", sans-serif;
+
 }
