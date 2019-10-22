@@ -67,29 +67,43 @@ class AddGoal extends React.Component {
       <div className="add-goal-main-div-wrapper">
         <div>
           <form onSubmit={this.onSubmit} className="add-goal-form">
+            <div className="goal-label-div-main-wrapper">
+            <div className="add-goal-labels-div-individual">
+
             <label  className="goal-label">Name</label>
             <input className="add-goal-input"
               type="text"
               value={this.state.name}
               onChange={this.onNameChange}
-            />
+              />
+              </div>
             <br></br>
+            <div className="add-goal-labels-div-individual">
             <label  className="goal-label" >Amount</label>
             <input className="add-goal-input"
               type="text"
               value={this.state.amount}
               onChange={this.onAmountChange}
             />
+           </div>
+
             <br></br>
+            <div className="add-goal-labels-div-individual">
             <label  className="goal-label" >Notes</label>
             <input className="add-goal-input"
               type="text"
               value={this.state.notes}
               onChange={this.onNotesChange}
             />
+            </div>
+
             <br></br>
+            <div className="add-goal-labels-div-individual">
             <label  id="goal-label-deadline-date" className="goal-label" >DeadLine Date</label>
+            </div>
+
             <br></br>
+            <div className="add-goal-labels-div-individual">
             <SingleDatePicker 
               date={this.state.createdAt}
               onDateChange={this.onDateChange}
@@ -97,8 +111,11 @@ class AddGoal extends React.Component {
               onFocusChange={this.onFocusChange}
               numberOfMonths={1}
             />
+                                    </div>
+
             <br></br>
             <button className="submit-goal-button"><span>Submit!</span></button>
+            </div>
           </form>
         </div>
       </div>

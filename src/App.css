@@ -404,16 +404,19 @@ padding-bottom: 2%;
   font-size: 3em;
   font-family: "Rubik", sans-serif;
   /* margin-right: 7%; */
-  width: 93%;
+  width: 75%;
   padding-bottom: .5em;
   font-weight: 800;
   border: 1px solid white;
   border-radius: 10px;
+  margin-left: 18.2%;
+  text-align: center;
+
 }
 
 .span-my-goals {
   text-align: center;
-  margin-left: 12%;
+
 }
 
 .add-goal-main-div-wrapper {
@@ -422,12 +425,13 @@ padding-bottom: 2%;
 }
 
 .add-goal-form {
-  width: 93%;
+  width: 75%;
   background-color: lightcyan;
   padding-bottom: 1.1em;
   border:1px solid grey;
   border-radius: 20px;
   padding-top: .7em;
+  margin-left: 18.2%;
 }
 .goal-label {
   display: inline-block; 
@@ -445,6 +449,16 @@ padding-bottom: 2%;
   margin-top: 0% !important;
 }
 
+
+.goal-label-div-wrapper {
+  text-align: center;
+
+}
+
+.add-goal-labels-div-individual {
+  display: inline-block;
+  width: 100%;
+}
 .add-goal-input {
   width: 20%;
   padding-bottom: 0%;
