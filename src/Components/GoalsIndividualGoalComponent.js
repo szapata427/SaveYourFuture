@@ -68,8 +68,21 @@ class GoalsIndividualGoal extends React.Component {
   submitedUpdateGoal = (e, oldGoal) => {
     e.preventDefault();
     console.log(oldGoal)
+    console.log(e)
+    console.log(this.state)
     let newGoal = this.state
     this.props.updateGoalSubmited(oldGoal, newGoal);
+    this.setState ({
+      goalId: 0,
+      editGoalState: false,
+      editGoalAmount: "",
+      editGoalName: "",
+      editGoalNotes: "",    
+      endDate: now,
+      error: false,
+      calanderFocused: false,
+      changedEndDate: false
+    });
   };
 
 
