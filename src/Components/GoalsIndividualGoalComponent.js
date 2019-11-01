@@ -37,8 +37,10 @@ class GoalsIndividualGoal extends React.Component {
 
 
   onDateChange = endDate => {
+    console.log(endDate)
     this.setState({
-      endDate: endDate
+      endDate: endDate,
+      changedEndDate: true
     });
   };
 
@@ -67,8 +69,6 @@ class GoalsIndividualGoal extends React.Component {
 
   submitedUpdateGoal = (e, oldGoal) => {
     e.preventDefault();
-    console.log(oldGoal)
-    console.log(e)
     console.log(this.state)
     let newGoal = this.state
     this.props.updateGoalSubmited(oldGoal, newGoal);
@@ -131,7 +131,7 @@ class GoalsIndividualGoal extends React.Component {
                   onFocusChange={this.onFocusChange}
                   numberOfMonths={1}
                   />
-                <button >Update Goal</button>
+                <button className="individual-goal-update-button">Update Goal</button>
                 <button className="individual-goal-delete-button">
                   Delete
                 </button>
@@ -149,7 +149,7 @@ class GoalsIndividualGoal extends React.Component {
                 <span className="span-individual-goal-info">{goal.Name}</span>
                 <span className="span-individual-goal-info">{goal.Notes}</span>
                 <span className="span-individual-goal-info">
-                  {goal.isMomemnt == true
+                  {goal.isMoment == true
                     ? fixDateDisplay({ Date: goal.EndDate, isMoment: true })
                     : fixDateDisplay(goal.EndDate)}
                 </span>
@@ -179,7 +179,7 @@ class GoalsIndividualGoal extends React.Component {
               <span className="span-individual-goal-info">{goal.Name}</span>
               <span className="span-individual-goal-info">{goal.Notes}</span>
               <span className="span-individual-goal-info">
-                {goal.isMomemnt == true
+                {goal.isMoment == true
                   ? fixDateDisplay({ Date: goal.EndDate, isMoment: true })
                   : fixDateDisplay(goal.EndDate)}
               </span>

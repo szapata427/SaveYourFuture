@@ -35,9 +35,10 @@ const initState = {
                     return goal
                 }
             })
-            // editedGoal["isMomemnt"] = true
+
+            console.log(editedGoal)
+            deleteEditedGoalArray.unshift(editedGoal)
             console.log(deleteEditedGoalArray)
-             deleteEditedGoalArray.unshift(editedGoal)
             return {currentGoals: deleteEditedGoalArray}
          default:
             return state

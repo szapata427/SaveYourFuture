@@ -66,10 +66,12 @@ export const totalAmountPerTransactionType = (transactionsArray, lastDays) => {
 };
 
 export const fixDateDisplay = date => {
+  console.log(date)
   let arrayDate;
   let stringDateWanted = "";
 
   if (date.isMoment == true) {
+    console.log(date, 'in isMoment true')
    let dateMomement = date.Date
     return dateMomement.format('ddd, D MMM YYYY')
   }

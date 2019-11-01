@@ -575,6 +575,7 @@ display: inline-block;
 
 .span-edit-individual-goal-info {
   width: 15%;
+  margin-right: 1.5em;
 }
 .DateInput.DateInput--with-caret.DateInput--open-down {
 width: 50px;
@@ -604,4 +605,20 @@ color: white;
 margin-left: .5em;
 font-family: "Rubik", sans-serif;
 
+}
+
+.individual-goal-update-button {
+  background-color: rgb(50, 184, 205);
+padding: 1em 1.5em 1em 1.5em;
+border: 1px solid rgb(50, 184, 205);
+border-radius: 10%;
+color: white;
+margin-left: .5em;
+font-family: "Rubik", sans-serif;
+font-weight: 700;
+}
+
+.DateInput.DateInput--open-down{
+width: 70px !important;
+padding: 4px !important;
 }
