@@ -70,11 +70,20 @@ export const fixDateDisplay = date => {
   let arrayDate;
   let stringDateWanted = "";
 
-  if (date.isMoment == true) {
-    console.log(date, 'in isMoment true')
-   let dateMomement = date.Date
-    return dateMomement.format('ddd, D MMM YYYY')
-  }
+  if (date.isMoment == true || date._isAMomentObject == true) {
+    if (date._isAMomentObject == true) {
+      // let dateString = date.toString()
+      let dateString = date.format('ddd, D MMM YYYY')
+      console.log(dateString)
+      return dateString
+    }
+    else {
+      console.log(date, 'in isMoment true')
+     let dateMomement = date.Date
+      return dateMomement.format('ddd, D MMM YYYY')
+    }
+
+    }
   if (typeof date == "string") {
     arrayDate = date.split(" ");
     if (arrayDate.length == 6) {

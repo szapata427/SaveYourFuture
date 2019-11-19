@@ -17,6 +17,7 @@ const initState = {
             let newGoal = action.value
             // newGoal["EndDate"] = newGoal["EndDate"].format('ddd D MMM YYYY')
             newGoal["isMomemnt"] = true
+            console.log(newGoal)
             let copyStateArrayWithNewGoal = [newGoal, ...state.currentGoals]
             return {currentGoals: copyStateArrayWithNewGoal}
         case "EDIT_GOAL":

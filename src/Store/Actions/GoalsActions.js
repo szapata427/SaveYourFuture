@@ -33,8 +33,12 @@ export const addGoal = (goal) => {
 }
 
 export const editGoal = (goalObject) => {
-    return ({
-        type: "EDIT_GOAL",
-        value: goalObject
-    })
+    console.log(goalObject)
+    // return ({
+    //     type: "EDIT_GOAL",
+    //     value: goalObject
+    // })
+    return dispatch => {
+        return fetch(`${databaseurl}EditGoal`)
+    }
 }
