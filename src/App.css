@@ -438,7 +438,7 @@ padding-bottom: 2%;
   width: 10%; text-align: right; 
   margin-right: 1.9%;
   padding-top: .9%;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-family: "Rubik", sans-serif;
   color: rgb(40, 111, 218);
 
@@ -446,7 +446,9 @@ padding-bottom: 2%;
 }
 #goal-label-deadline-date{
   margin-bottom: .7% !important;
+  margin-right: 17% !important;
   margin-top: 0% !important;
+  white-space: nowrap;
 }
 
 
@@ -621,4 +623,21 @@ font-weight: 700;
 .DateInput.DateInput--open-down{
 width: 70px !important;
 padding: 4px !important;
+}
+
+.main-date-deadline-wrapper {
+  overflow: hidden;
+  margin-top: 1.5%;
+}
+
+#goal-deadline-date-div {
+float: left;
+width: 20%;
+margin-left: 29%;
+}
+
+#goal-datepicker-id {
+  overflow: hidden;
+  width: 10%;
+  margin-right: 35%;
 }

@@ -98,12 +98,11 @@ class AddGoal extends React.Component {
             </div>
 
             <br></br>
-            <div className="add-goal-labels-div-individual">
+            <div className="main-date-deadline-wrapper">
+            <div className="add-goal-labels-div-individual" id="goal-deadline-date-div">
             <label  id="goal-label-deadline-date" className="goal-label" >DeadLine Date</label>
             </div>
-
-            <br></br>
-            <div className="add-goal-labels-div-individual">
+            <div className="add-goal-labels-div-individual" id="goal-datepicker-id">
             <SingleDatePicker 
               date={this.state.createdAt}
               onDateChange={this.onDateChange}
@@ -112,6 +111,8 @@ class AddGoal extends React.Component {
               numberOfMonths={1}
             />
                                     </div>
+
+            </div>
 
             <br></br>
             <button className="submit-goal-button"><span>Submit!</span></button>
